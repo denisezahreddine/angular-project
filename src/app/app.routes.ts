@@ -4,7 +4,7 @@ export const routes: Routes = [
   {
     path: 'comptes',
     // Chargement différé (Lazy Loading)
-    loadComponent: () => import('./pages/comptes/comptes.component').then(m => m.ComptesComponent)
+    loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
   },
   {
     path: '',
