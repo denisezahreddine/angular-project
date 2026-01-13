@@ -1,7 +1,7 @@
 @if (comptes().length > 0) {
   <ul>
     @for (c of comptes(); track c.id) {
-      <li>{{ c.id }} — {{ c.label}} €</li>
+      <li>{{ c.balance }} — {{ c.label}}</li>
     }
   </ul>
 } @else {
