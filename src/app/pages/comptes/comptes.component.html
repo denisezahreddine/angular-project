@@ -1,0 +1,9 @@
+@if (comptes().length > 0) {
+  <ul>
+    @for (c of comptes(); track c.id) {
+      <li>{{ c.id }} — {{ c.label}} €</li>
+    }
+  </ul>
+} @else {
+  <p>Aucun compte trouvé.</p>
+}
