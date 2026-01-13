@@ -1,0 +1,53 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <h2>CodingBank</h2>
+
+    <div class="field">
+      <label>Client code </label>
+      <input type="text"
+             maxlength="8"
+             [value]="codeClient()"
+             (input)="codeClient.set($any($event.target).value)"
+             placeholder="12345678">
+    </div>
+
+    <div class="field">
+      <label>Password </label>
+      <div class="password-row">
+
+        <div class="dots-container">
+          @for (i of [0,1,2,3,4,5]; track i) {
+            <div class="dot" [class.active]="password().length > i"></div>
+          }
+        </div>
+        <button type="button" class="btn-clear-red" (click)="deleteLast()">
+          &times;
+        </button>
+      </div>
+    </div>
+
+    <div class="numpad">
+      @for (n of numbers; track n) {
+        <button type="button" (click)="addNumber(n)">
+          {{ n }}
+        </button>
+      }
+
+    </div>
+
+    @if (error()) {
+      <p class="error-text">
+        {{error() }}
+      </p>
+    }
+    <button class="login-button"
+            [disabled]="!isFormValid()"
+            (click)="onLogin()">
+      Login
+    </button>
+
+    <p class="footer">
+      Don’t have an account yet? <a routerLink="/register">Register</a>
+    </p>
+  </div>
+</div>
