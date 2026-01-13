@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { LoadComptesUseCase } from '../../compte/usecases/load-comptes.usecase';
 import { CompteStore } from '../../compte/store/compte.store';
+import {SelectCompteComponent} from './components/select-compte.component';
 
 @Component({
   selector: 'app-comptes',
   standalone: true,
-  imports: [],
+  imports: [SelectCompteComponent],
   templateUrl: './comptes.component.html'
 })
 export class ComptesComponent {
