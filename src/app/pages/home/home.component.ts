@@ -7,9 +7,9 @@ import {SelectCompteComponent} from './components/select-compte.component';
   selector: 'app-comptes',
   standalone: true,
   imports: [SelectCompteComponent],
-  templateUrl: './comptes.component.html'
+  templateUrl: './home.component.html'
 })
-export class ComptesComponent {
+export class HomeComponent {
   private loadComptes = inject(LoadComptesUseCase);
   private store = inject(CompteStore);
 
