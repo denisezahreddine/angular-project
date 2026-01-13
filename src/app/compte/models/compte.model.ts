@@ -2,6 +2,8 @@
 
 export interface Compte {
   id: string;
-  initialBalance:number;
   label: string;
+  balance: number;
+  ownerId: string,
+  openAt:string
 }

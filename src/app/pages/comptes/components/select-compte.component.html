@@ -1,0 +1,21 @@
+<div class="container">
+
+  <select (change)="onSelectionChange($event)" [value]="selectedId() ?? ''">
+    <option value="" disabled selected>-- Choisir un compte --</option>
+    @for (c of comptes(); track c.id) {
+      <option [value]="c.id">{{ c.label }} ({{ c.id }})</option>
+    }
+  </select>
+  <div class="display-area">
+    @if (selectedCompte(); as compte) {
+      <div class="balance-card">
+        <p>Solde du compte <strong>{{ compte.label }}</strong> :</p>
+        <h2 [class.red]="compte.balance < 0">{{ compte.balance}} €</h2>
+      </div>
+    } @else {
+      <div class="placeholder">Choisissez un compte pour voir le solde</div>
+    }
+  </div>
+
+
+</div>

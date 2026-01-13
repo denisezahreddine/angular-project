@@ -13,7 +13,8 @@ export class LoadComptesUseCase {
 
   execute(): void {
     this.api.getComptes().pipe(take(1)).subscribe({
-      next: (comptes) => this.store.setComptes(comptes),
+      next: (comptes) =>
+      this.store.setComptes(comptes),
       error: (err) => console.error('Erreur chargement:', err)
     });
   }
