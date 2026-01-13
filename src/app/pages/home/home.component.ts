@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { LoadComptesUseCase } from '../../compte/usecases/load-comptes.usecase';
 import { CompteStore } from '../../compte/store/compte.store';
-
+//la page Home appel load-home-data.usecase +garde le vieuw model Home (comptes , celui selectionné ,last transaction)
 @Component({
   selector: 'app-comptes',
   standalone: true,
   imports: [],
-  templateUrl: './comptes.component.html'
+  templateUrl: './home.component.html'
 })
-export class ComptesComponent {
+export class HomeComponent {
   private loadComptes = inject(LoadComptesUseCase);
   private store = inject(CompteStore);
 
