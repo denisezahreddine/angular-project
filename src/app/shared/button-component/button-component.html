@@ -1,1 +1,7 @@
-<p>button-component works!</p>
+<button
+  [type]="type()"
+  [disabled]="disabled()"
+  [class]="'btn-custom ' + variant()"
+  (click)="handleClick($event)">
+  <ng-content></ng-content>
+</button>

@@ -1,0 +1,18 @@
+<div class="profile-container">
+  <a routerLink="/home" class="back-button">←</a>
+
+  <div class="profile-card">
+    <div class="user-info">
+      <span class="user-name">{{ store.userName() }}</span>
+
+      <div class="code-group">
+        <span class="label">Client code</span>
+        <span class="client-code">{{ store.clientCode() }}</span>
+      </div>
+    </div>
+
+    <button class="logout-button" (click)="onLogout()">
+      Disconnect
+    </button>
+  </div>
+</div>

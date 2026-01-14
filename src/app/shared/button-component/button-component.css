@@ -1,0 +1,23 @@
+.btn-custom {
+  background-color: #4285f4; /* Le bleu de votre image */
+  color: white;
+  border: none;
+  border-radius: 6px; /* Coins arrondis */
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-custom:hover {
+  background-color: #3367d6;
+}
+
+.btn-custom:disabled {
+  background-color: #a0c3ff;
+  cursor: not-allowed;
+}
