@@ -1,0 +1,33 @@
+/* Le cercle principal */
+.avatar-circle {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-color: #1a237e; /* Ton bleu marine */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.avatar-circle:hover {
+  transform: scale(1.05); /* L'avatar grossit légèrement */
+  filter: brightness(1.2); /* Devient un peu plus lumineux */
+}
+
+.avatar-circle:active {
+  transform: scale(0.95); /* Effet de pression quand on clique */
+}
+
+/* Les lettres à l'intérieur */
+.initials-text {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+

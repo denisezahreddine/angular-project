@@ -12,11 +12,16 @@ import {ProfileUseCase} from '../../compte/usecases/profile.usecase';
   ],
   styleUrl: './profile.component.css'
 })
+
 export class ProfileComponent implements OnInit {
   public store = inject(LoginStore);
   private profileUseCase = inject(ProfileUseCase);
   private router = inject(Router);
 
+
+  // Accès direct au signal du store
+  username = this.store.userName;
+  clientcode=this.store.clientCode;
   ngOnInit() {
     this.profileUseCase.execute();
   }
