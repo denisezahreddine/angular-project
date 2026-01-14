@@ -1,0 +1,63 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <h2>CodingBank</h2>
+
+    <div class="field">
+      <label> Nom </label>
+      <input type="text"
+             maxlength="8"
+             [value]="clientName()"
+             (input)="clientName.set($any($event.target).value)"
+             placeholder="John doe">
+    </div>
+
+    <div class="field">
+      <label>Password </label>
+      <div class="password-row">
+
+        <div class="dots-container">
+          @for (i of [0,1,2,3,4,5]; track i) {
+            <div class="dot" [class.active]="password().length > i"></div>
+          }
+        </div>
+        <button type="button" class="btn-clear-red" (click)="deleteLast()">
+          &times;
+        </button>
+      </div>
+    </div>
+
+    <div class="numpad">
+      @for (n of numbers; track n) {
+        <button type="button" (click)="addNumber(n)">
+          {{ n }}
+        </button>
+      }
+
+    </div>
+
+    @if (error()) {
+      <p class="error-text">
+        {{error() }}
+      </p>
+
+    }
+
+    <button class="login-button"
+            [disabled]="!isFormValid() || loading()"
+            (click)="onRegister()" >
+      @if (loading()) {
+      Loading...
+      } @else {
+      Register
+      }
+    </button>
+    @if (showSuccessRegistrationPopup() && clientId()) {
+    <div class="popup">
+      <p>Voici ton client ID : {{ clientId() }}</p>
+      <button (click)=[onOk()]>OK</button>
+    </div>
+
+    }
+
+  </div>
+</div>
