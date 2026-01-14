@@ -9,12 +9,12 @@ export class CompteApi {
 
   private http = inject(HttpClient);
   private readonly baseUrl = environment.apiUrl;
-  private readonly token=environment.token;
+
 
   getComptes() {
     return this.http.get<Compte[]>(`${this.baseUrl}/accounts`, {
       headers: {
-        'Authorization': `Bearer ${this.token}`
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
 
       }
     });
