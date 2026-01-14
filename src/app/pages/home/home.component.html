@@ -1,18 +1,9 @@
 <section>
-  <h2>Sélectionner un compte</h2>
   <app-select-compte />
 </section>
 
-<hr />
-
-<h3>Liste complète des comptes</h3>
-
-@if (comptes().length > 0) {
-  <ul>
-    @for (c of comptes(); track c.id) {
-      <li>{{ c.balance }} — {{ c.label}}</li>
-    }
-  </ul>
-} @else {
-  <p>Aucun compte trouvé.</p>
-}
+<div style="display: flex; gap: 10px;">
+  <app-button (btnClick)="onInfo()">Infos</app-button>
+  <app-button (btnClick)="onSend()">Envoyer</app-button>
+  <app-button (btnClick)="onOpen()">Ouvre</app-button>
+</div>
