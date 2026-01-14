@@ -4,7 +4,7 @@ import {Component, input, output} from '@angular/core';
   selector: 'app-password-component',
   imports: [],
   templateUrl: './password-component.html',
-  styleUrls: ['./password-component.css', '../../register.component.css'],
+  styleUrls: ['./password-component.css'],
 })
 export class PasswordComponent {
 // On reçoit la valeur actuelle du mot de passe (signal-based input)
