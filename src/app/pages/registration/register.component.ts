@@ -9,11 +9,12 @@ import {RegistrationViewModel} from '../../registration/viewModel/RegistrationVi
 import {EventBus} from '../../compte/event/EventBus';
 import {RegistrationSuccessEvent} from '../../compte/event/RegisterListener';
 import {ButtonComponent} from '../../shared/button-component/button-component';
+import {PasswordComponent} from './components/password-component/password-component';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [ButtonComponent,PasswordComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -39,11 +40,7 @@ export class RegisterComponent {
      return /^[A-Za-z\s]{3,}$/.test(this.clientName()) && this.password().length === 6;
   });
 
-  addNumber(num: number) {
-    if (this.password().length < 6) {
-      this.password.update(p => p + num.toString());
-    }
-  }
+
   constructor() {
     this.eventBus.registerListener(RegistrationSuccessEvent, event => {
       this.clientId.set(event.clientId)
@@ -60,12 +57,8 @@ export class RegisterComponent {
     this.router.navigate(['/home']);
   }
 
-  clearPassword() {
-    this.password.set('');
-  }
-
-  deleteLast() {
-    this.password.update(p => p.slice(0, -1));
+  updatePassword(newValue: string) {
+    this.password.set(newValue);
   }
 
   onRegister() {

@@ -11,29 +11,13 @@
              placeholder="John doe">
     </div>
 
-    <div class="field">
-      <label>Password </label>
-      <div class="password-row">
+    <app-password-component [value]="password()"
+                            [maxLength]="6"
+                            (valueChange)="updatePassword($any($event))">
 
-        <div class="dots-container">
-          @for (i of [0,1,2,3,4,5]; track i) {
-            <div class="dot" [class.active]="password().length > i"></div>
-          }
-        </div>
-        <button type="button" class="btn-clear-red" (click)="deleteLast()">
-          &times;
-        </button>
-      </div>
-    </div>
+    </app-password-component>
 
-    <div class="numpad">
-      @for (n of numbers; track n) {
-        <button type="button" (click)="addNumber(n)">
-          {{ n }}
-        </button>
-      }
 
-    </div>
 
     @if (error()) {
       <p class="error-text">
