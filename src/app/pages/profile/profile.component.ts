@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
-import {LoginStore} from '../../compte/store/login.store';
+import {AuthStore} from '../../compte/store/auth.store';
 import {ProfileUseCase} from '../../compte/usecases/profile.usecase';
 
 @Component({
@@ -13,7 +13,7 @@ import {ProfileUseCase} from '../../compte/usecases/profile.usecase';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
-  public store = inject(LoginStore);
+  public store = inject(AuthStore);
   private profileUseCase = inject(ProfileUseCase);
   private router = inject(Router);
 

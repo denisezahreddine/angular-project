@@ -11,7 +11,6 @@ import {RegistrationSuccessEvent} from '../../compte/event/RegisterListener';
 @Injectable({providedIn: 'root'})
 export class RegisterUsecase {
   private gateway = inject(AuthGateway);
-  private router = inject(Router);
   private store = inject(AuthStore);
   private eventBus = inject(EventBus);
 
