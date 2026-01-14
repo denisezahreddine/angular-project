@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { LoadComptesUseCase } from '../../compte/usecases/load-comptes.usecase';
 import { CompteStore } from '../../compte/store/compte.store';
 import {SelectCompteComponent} from './components/select-compte.component';
@@ -10,14 +10,14 @@ import { ButtonComponent } from '../../shared/button-component/button-component'
   imports: [SelectCompteComponent,ButtonComponent],
   templateUrl: './home.component.html'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
   private loadComptes = inject(LoadComptesUseCase);
   private store = inject(CompteStore);
 
   // Accès direct au signal du store
   comptes = this.store.comptes;
 
-  constructor() {
+  ngOnInit() {
     this.loadComptes.execute();
   }
 //les méthodes que vous appelez dans votre HTML
