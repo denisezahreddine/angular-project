@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { LoadComptesUseCase } from '../../compte/usecases/load-comptes.usecase';
-import { CompteStore } from '../../compte/store/compte.store';
+import { LoadComptesUseCase } from '../../features/compte/usecases/load-comptes.usecase';
+import { CompteStore } from '../../features/compte/store/compte.store';
 import {SelectCompteComponent} from './components/select-compte.component';
 
 @Component({

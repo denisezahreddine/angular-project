@@ -1,5 +1,5 @@
 import {computed, Injectable, signal} from '@angular/core';
-import { Compte } from '../models/compte.model';
+import { Compte } from '../api/models/compte.model';
 //store local ( état global des comptes )
 @Injectable({ providedIn: 'root' })
 export class CompteStore {

@@ -1,7 +1,7 @@
 import {Injectable, signal} from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
-export class LoginStore {
+export class AuthStore {
   // On initialise avec la présence du token
   private readonly _isAuthenticated = signal<boolean>(!!localStorage.getItem('access_token'));
   private readonly _error = signal<string | null>(null);

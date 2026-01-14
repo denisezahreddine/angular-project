@@ -4,8 +4,8 @@
 
 import { Component, signal, computed, inject } from '@angular/core';
 import { RouterLink} from '@angular/router';
-import {LoginUseCase} from '../../compte/usecases/login.usecase';
-import {LoginStore} from '../../compte/store/login.store';
+import {LoginUseCase} from '../../features/auth/usecases/login.usecase';
+import {AuthStore} from '../../features/auth/store/auth.store';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ import {LoginStore} from '../../compte/store/login.store';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  private store = inject(LoginStore);
+  private store = inject(AuthStore);
   private loginUseCase = inject(LoginUseCase);
 
   // Accès direct au signal du store

@@ -1,5 +1,4 @@
 //contient les interfaces comptes , Transaction
-
 export interface Compte {
   id: string;
   label: string;

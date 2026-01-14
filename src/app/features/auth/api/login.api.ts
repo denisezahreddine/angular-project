@@ -1,8 +1,8 @@
 import {inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 import {tap} from 'rxjs';
-import {LoginResponse} from '../models/loginResponse.model';
+import {LoginResponse} from './models/loginResponse.model';
 
 
 @Injectable({ providedIn: 'root' })
