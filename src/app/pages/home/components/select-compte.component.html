@@ -1,21 +1,77 @@
-<div class="container">
+<div class="banking-container">
+  <!-- Carte bancaire principale -->
+  <div class="account-card">
+    <div class="card-header">
+      <div class="card-chip"></div>
+      <div class="card-logo">BANK</div>
+    </div>
 
-  <select (change)="onSelectionChange($event)" [value]="selectedId() ?? ''">
-    <option value="" disabled selected>-- Choisir un compte --</option>
-    @for (c of comptes(); track c.id) {
-      <option [value]="c.id">{{ c.label }} ({{ c.id }})</option>
-    }
-  </select>
-  <div class="display-area">
-    @if (selectedCompte(); as compte) {
-      <div class="balance-card">
-        <p>Solde du compte <strong>{{ compte.label }}</strong> :</p>
-        <h2 [class.red]="compte.balance < 0">{{ compte.balance}} €</h2>
+    <div class="card-body">
+      @if (selectedCompte(); as compte) {
+      <div class="account-name">{{ compte.label }}</div>
+      <div class="balance-container">
+        <span class="balance-label">Solde disponible</span>
+        <div class="balance-amount" [class.negative]="compte.balance < 0">
+          {{ compte.balance }} €
+        </div>
       </div>
-    } @else {
-      <div class="placeholder">Choisissez un compte pour voir le solde</div>
-    }
+      } @else {
+      <div class="account-name">Sélectionnez un compte</div>
+      <div class="balance-container">
+        <span class="balance-label">Solde disponible</span>
+        <div class="balance-amount placeholder">--,-- €</div>
+      </div>
+      }
+    </div>
+
+    <div class="card-footer">
+      <span class="card-number">•••• •••• •••• {{ selectedId()?.slice(-4) || '****' }}</span>
+    </div>
   </div>
 
+  <!-- Section de sélection -->
+  <div class="selection-section">
+    <h3 class="section-title">Sélectionner un compte</h3>
 
+    <select
+      class="select"
+      (change)="onSelectionChange($event)"
+      [value]="selectedId() || ''"
+    >
+      <option value="" disabled>Choisir un compte</option>
+
+      @for (c of comptes(); track c.id) {
+      <option [value]="c.id">
+        {{ c.label }} — {{ c.balance }} €
+      </option>
+      }
+    </select>
+  </div>
+
+  <!-- Liste des comptes -->
+  <div class="accounts-section">
+    <h3 class="section-title">Tous mes comptes</h3>
+
+    <div class="accounts-list">
+      @for (c of comptes(); track c.id) {
+      <div
+        class="account-item"
+        [class.active]="selectedId() === c.id"
+      >
+        <div class="account-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="5" width="20" height="14" rx="2"/>
+            <line x1="2" y1="10" x2="22" y2="10"/>
+          </svg>
+        </div>
+        <div class="account-info">
+          <div class="account-label">{{ c.label }}</div>
+          <div class="account-balance" [class.negative]="c.balance < 0">
+            {{ c.balance }} €
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
 </div>

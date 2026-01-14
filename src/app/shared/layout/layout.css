@@ -1,0 +1,11 @@
+.layout-container {
+  display: grid;
+  grid-template-rows: 70px 1fr; /* Header de 70px, le reste pour le contenu */
+  height: 100vh;
+  background-color: #f4f7f6; /* Gris très léger type banque */
+}
+
+.content-area {
+  overflow-y: auto;
+  padding: 24px;
+}
