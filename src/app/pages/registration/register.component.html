@@ -54,9 +54,8 @@
     @if (showSuccessRegistrationPopup() && clientId()) {
     <div class="popup">
       <p>Voici ton client ID : {{ clientId() }}</p>
-      <button (click)=[onOk()]>OK</button>
+      <app-button (btnClick)="onOk()" >OK</app-button>
     </div>
-
     }
 
   </div>

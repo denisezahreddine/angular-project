@@ -8,10 +8,12 @@ import {AuthStore} from '../../compte/store/auth.store';
 import {RegistrationViewModel} from '../../registration/viewModel/RegistrationViewModel';
 import {EventBus} from '../../compte/event/EventBus';
 import {RegistrationSuccessEvent} from '../../compte/event/RegisterListener';
+import {ButtonComponent} from '../../shared/button-component/button-component';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
+  imports: [ButtonComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

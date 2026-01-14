@@ -35,11 +35,13 @@ export const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: '**', // Redirige les erreurs 404 vers login
-    redirectTo: 'login'
-  },
-  {
     path: 'register',
     component: RegisterComponent,
   },
+  // TOUJOURS EN DERNIER
+  {
+    path: '**', // Redirige les erreurs 404 vers login
+    redirectTo: 'login'
+  }
+
 ];
