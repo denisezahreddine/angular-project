@@ -16,13 +16,7 @@ export class LoginApi {
     return this.http.post<LoginResponse>(`${this.baseUrl}/auth/login`, {
       clientCode,
       password
-    }).pipe(
-      tap(response => {
-        // On stocke le token pour les futurs appels API
-        localStorage.setItem('access_token', response.jwt);
-
-      })
-    );
+    });
   }
 
 }

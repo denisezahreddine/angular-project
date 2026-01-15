@@ -9,8 +9,6 @@ import { OpenAccountComponent } from './pages/open-account.component/open-accoun
 
 export const routes: Routes = [
   {
-
-  {
     path: '',
     component: LayoutComponent,
     children: [

@@ -8,10 +8,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const token = localStorage.getItem('access_token');
 
-  console.log('--- DEBUG GUARD ---');
-  console.log('Token en mémoire :', token);
-  console.log('Signal Store :', store.isAuthenticated());
-
   // On vérifie le signal dans le store
   if (store.isAuthenticated()) {
     return true; // Accès autorisé
