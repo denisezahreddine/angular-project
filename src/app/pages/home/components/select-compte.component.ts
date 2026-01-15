@@ -1,9 +1,11 @@
 import {Component, inject, signal, computed, EventEmitter, Output} from '@angular/core';
 import {CompteStore} from '../../../compte/store/compte.store';
+import {CopyButtonComponent} from '../../../shared/copy-button-component/copy-button-component';
 
 @Component({
   selector: 'app-select-compte',
   standalone: true,
+  imports: [CopyButtonComponent],
   templateUrl: './select-compte.component.html',
   styleUrl: './select-compte.component.css'
 })
