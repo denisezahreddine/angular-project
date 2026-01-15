@@ -1,17 +1,17 @@
 <div class="profile-container">
-  <a routerLink="/home" class="back-button">←</a>
+  <app-back-button></app-back-button>
 
   <div class="profile-card">
     <div class="user-info">
-      <span class="user-name">{{ store.userName() }}</span>
+      <span class="user-name">{{ vm.username() }}</span>
 
       <div class="code-group">
         <span class="label">Client code</span>
-        <span class="client-code">{{ store.clientCode() }}</span>
+        <span class="client-code">{{ vm.clientCode() }}</span>
       </div>
     </div>
 
-    <button class="logout-button" (click)="onLogout()">
+    <button class="logout-button" (click)="vm.onLogout()">
       Disconnect
     </button>
   </div>

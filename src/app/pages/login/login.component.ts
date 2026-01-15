@@ -1,11 +1,8 @@
-//page login appel login.usercase quand le formulaire est soumis
-//gere la navigation vers /home
-
 
 import { Component, signal, computed, inject } from '@angular/core';
 import { RouterLink} from '@angular/router';
 import {LoginUseCase} from '../../compte/usecases/login.usecase';
-import {LoginStore} from '../../compte/store/login.store';
+import {AuthStore} from '../../compte/store/auth.store';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +12,7 @@ import {LoginStore} from '../../compte/store/login.store';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  private store = inject(LoginStore);
+  private store = inject(AuthStore);
   private loginUseCase = inject(LoginUseCase);
 
   // Accès direct au signal du store

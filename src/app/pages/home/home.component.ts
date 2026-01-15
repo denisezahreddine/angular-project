@@ -1,13 +1,14 @@
 import {Component, inject, OnInit} from '@angular/core';
 import { LoadComptesUseCase } from '../../compte/usecases/load-comptes.usecase';
 import { CompteStore } from '../../compte/store/compte.store';
-import {SelectCompteComponent} from './components/select-compte.component';
+import { SelectCompteComponent } from './components/select-compte.component';
 import { ButtonComponent } from '../../shared/button-component/button-component';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-comptes',
   standalone: true,
-  imports: [SelectCompteComponent,ButtonComponent],
+  imports: [SelectCompteComponent, ButtonComponent],
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit{
@@ -44,8 +45,7 @@ export class HomeComponent implements OnInit{
     this.router.navigate(['/transaction', this.selectedAccountId]);
   }
 
-
   onOpen() {
-    console.log('Bouton Ouvre cliqué !');
+    this.router.navigate(['/open']);
   }
 }
