@@ -7,6 +7,9 @@ export class CompteStore {
   private _comptes = signal<Compte[]>([]);
   readonly comptes = this._comptes.asReadonly();
 
+  private  _compte = signal<Compte|null>(null);
+  readonly compte = this._compte.asReadonly();
+
   // On stocke l'ID du compte sélectionné
   readonly selectedId = signal<string | null>(null);
 
@@ -23,6 +26,7 @@ export class CompteStore {
   clear() {
     this._comptes.set([]);
   }
+
 
   // Méthode pour changer la sélection
   selectCompte(id: string) {
@@ -45,4 +49,7 @@ export class CompteStore {
     this._comptes.set(updated);
   }
 
+  setCompteDetail(compte: Compte) {
+    this._compte.set(compte);
+  }
 }

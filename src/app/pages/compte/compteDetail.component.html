@@ -1,0 +1,28 @@
+<div class="detail-container">
+  <app-back-button destination="/home"></app-back-button>
+
+  @if (compte(); as compte) {
+    <div class="detail-card">
+      <div class="account-header">
+        <h2>{{ compte.label }}</h2>
+        <p class="balance">{{ compte.balance | currency:'EUR' }}</p>
+      </div>
+
+      <div class="info-list">
+        <div class="info-item">
+          <span class="label">Id</span>
+          <span class="value">{{ compte.id }}</span>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Opened at</span>
+          <span class="value">{{ compte.openAt | date:'dd/MM/yyyy' }}</span>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="error-state">
+      <p>Aucun compte sélectionné.</p>
+    </div>
+  }
+</div>
