@@ -1,8 +1,10 @@
 import {Injectable, signal} from '@angular/core';
+import {User} from '../models/user.models';
 
-@Injectable({ providedIn: 'root' })
-export class LoginStore {
-// --- ÉTAT PRIVÉ ---
+@Injectable({providedIn: 'root'})
+export class AuthStore {
+
+
   private readonly _isAuthenticated = signal<boolean>(!!localStorage.getItem('access_token'));
   private readonly _error = signal<string | null>(null);
 
@@ -16,6 +18,13 @@ export class LoginStore {
   readonly error = this._error.asReadonly();
   readonly userName = this._userName.asReadonly();
   readonly clientCode = this._clientCode.asReadonly();
+
+  private _loading = signal<boolean>(false)
+  readonly loading = this._loading.asReadonly();
+
+  setLoading(loading: boolean) {
+    this._loading.set(loading);
+  }
 
   setLoginSuccess(name: string,code: string) {
     this._isAuthenticated.set(true);

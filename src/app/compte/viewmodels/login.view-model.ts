@@ -1,12 +1,12 @@
 import { inject, Injectable, signal, computed } from '@angular/core';
 import {LoginUseCase} from '../usecases/login.usecase';
-import {LoginStore} from '../store/login.store';
+import {AuthStore} from '../store/auth.store';
 
 
 @Injectable()
 export class LoginViewModel {
   private loginUseCase = inject(LoginUseCase);
-  private store = inject(LoginStore);
+  private store = inject(AuthStore);
 
   // --- État du formulaire ---
   readonly codeClient = signal('');

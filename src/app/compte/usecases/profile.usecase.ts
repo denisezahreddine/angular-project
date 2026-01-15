@@ -1,11 +1,11 @@
 import {ProfileApi} from '../api/profile.api';
-import {LoginStore} from '../store/login.store';
+import {AuthStore} from '../store/auth.store';
 import {inject, Injectable} from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileUseCase {
   private api = inject(ProfileApi);
-  private store = inject(LoginStore);
+  private store = inject(AuthStore);
 
   execute(): void {
     this.api.getCurrentUser().subscribe({

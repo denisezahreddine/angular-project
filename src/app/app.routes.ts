@@ -6,6 +6,7 @@ import {LayoutComponent} from './shared/layout/layout';
 import {ProfileComponent} from './pages/profile/profile.component';
 import {TransactionPageComponent} from './pages/transaction/transaction';
 import { OpenAccountComponent } from './pages/open-account.component/open-account.component';
+import {RegisterComponent} from './pages/registration/register.component';
 
 export const routes: Routes = [
   {
@@ -44,6 +45,11 @@ export const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  // TOUJOURS EN DERNIER
   {
     path: '**', // Redirige les erreurs 404 vers login
     redirectTo: 'login'

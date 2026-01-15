@@ -1,0 +1,46 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <h2>CodingBank</h2>
+
+    <div class="field">
+      <label> Nom </label>
+      <input type="text"
+             maxlength="8"
+             [value]="clientName()"
+             (input)="clientName.set($any($event.target).value)"
+             placeholder="John doe">
+    </div>
+
+    <app-password-component [value]="password()"
+                            [maxLength]="6"
+                            (valueChange)="updatePassword($any($event))">
+
+    </app-password-component>
+
+
+
+    @if (error()) {
+      <p class="error-text">
+        {{error() }}
+      </p>
+
+    }
+
+    <button class="login-button"
+            [disabled]="!isFormValid() || loading()"
+            (click)="onRegister()" >
+      @if (loading()) {
+      Loading...
+      } @else {
+      Register
+      }
+    </button>
+    @if (showSuccessRegistrationPopup() && clientId()) {
+    <div class="popup">
+      <p>Voici ton client ID : {{ clientId() }}</p>
+      <app-button (btnClick)="onOk()" >OK</app-button>
+    </div>
+    }
+
+  </div>
+</div>

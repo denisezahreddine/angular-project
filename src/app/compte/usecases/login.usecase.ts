@@ -4,12 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { take, tap } from 'rxjs';
 import {LoginApi} from '../api/login.api';
-import {LoginStore} from '../store/login.store';
+import {AuthStore} from '../store/auth.store';
 
 @Injectable({ providedIn: 'root' })
 export class LoginUseCase {
   private api = inject(LoginApi);
-  private store = inject(LoginStore);
+  private store = inject(AuthStore);
   private router = inject(Router);
 
 
