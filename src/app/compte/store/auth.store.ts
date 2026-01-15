@@ -8,8 +8,9 @@ export class AuthStore {
   private readonly _isAuthenticated = signal<boolean>(!!localStorage.getItem('access_token'));
   private readonly _error = signal<string | null>(null);
 
+
   // signaux pour le profil
-  private readonly _userName = signal<string>('');
+  private readonly _userName = signal<string>(localStorage.getItem('user_name') || '');
   private readonly _clientCode = signal<string>('');
 
   // --- ÉTAT PUBLIC ---
@@ -25,11 +26,13 @@ export class AuthStore {
     this._loading.set(loading);
   }
 
-  setLoginSuccess() {
+  setLoginSuccess(name: string,code: string) {
     this._isAuthenticated.set(true);
     this._error.set(null);
+    this._userName.set(name);
+    this._clientCode.set(code);
+    localStorage.setItem('user_name', name);
   }
-
 
   setUserInfo(name: string, code: string) {
     this._userName.set(name);
@@ -38,6 +41,7 @@ export class AuthStore {
 
   setLogout() {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('user_name');
     this._isAuthenticated.set(false);
     this._error.set(null);
     this._userName.set('');
@@ -47,5 +51,4 @@ export class AuthStore {
   setError(message: string) {
     this._error.set(message);
   }
-
 }

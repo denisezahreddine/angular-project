@@ -1,6 +1,3 @@
-//page login appel login.usercase quand le formulaire est soumis
-//gere la navigation vers /home
-
 
 import { Component, signal, computed, inject } from '@angular/core';
 import { RouterLink} from '@angular/router';
@@ -17,7 +14,7 @@ import {AuthStore} from '../../compte/store/auth.store';
 export class LoginComponent {
   private store = inject(AuthStore);
   private loginUseCase = inject(LoginUseCase);
-
+  protected vm = inject(LoginViewModel);
   // Accès direct au signal du store
   error = this.store.error;
 

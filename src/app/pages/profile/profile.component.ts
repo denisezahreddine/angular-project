@@ -1,19 +1,20 @@
 import { Component, inject, OnInit } from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
-import {AuthStore} from '../../compte/store/auth.store';
+import {LoginStore} from '../../compte/store/login.store';
 import {ProfileUseCase} from '../../compte/usecases/profile.usecase';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
+  providers: [ProfileViewModel],
   templateUrl: './profile.component.html',
   imports: [
-    RouterLink
+    RouterLink,BackButtonComponent
   ],
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
-  public store = inject(AuthStore);
+  public store = inject(LoginStore);
   private profileUseCase = inject(ProfileUseCase);
   private router = inject(Router);
 
