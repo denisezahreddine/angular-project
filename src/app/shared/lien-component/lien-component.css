@@ -1,0 +1,12 @@
+.custom-link {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+  font-family: inherit;
+}
+
+.custom-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}

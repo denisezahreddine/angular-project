@@ -4,11 +4,12 @@ import { CompteStore } from '../../compte/store/compte.store';
 import { SelectCompteComponent } from './components/select-compte.component';
 import { ButtonComponent } from '../../shared/button-component/button-component';
 import { Router } from '@angular/router';
+import { LienComponent } from "../../shared/lien-component/lien-component";
 
 @Component({
   selector: 'app-comptes',
   standalone: true,
-  imports: [SelectCompteComponent, ButtonComponent],
+  imports: [SelectCompteComponent, ButtonComponent, LienComponent],
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit{

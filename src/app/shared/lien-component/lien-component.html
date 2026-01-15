@@ -1,1 +1,6 @@
-<p>lien-component works!</p>
+<a [href]="href()"
+   [target]="isExternal() ? '_blank' : '_self'"
+   (click)="onHandleClick($event)"
+   class="custom-link">
+  {{ label() }}
+</a>
