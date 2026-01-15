@@ -1,0 +1,27 @@
+<div class="tx-shell">
+
+  <main class="tx-main">
+    <section class="tx-card">
+      <button
+        class="tx-back"
+        type="button"
+        (click)="router.navigate(['/home'])">
+        ←
+      </button>
+
+      <h2 class="tx-title">Receiver account id</h2>
+      <p class="tx-subtitle">Fill in the information to send your transfer</p>
+
+      <app-new-transaction-component
+        (submitTransactionForm)="onFormSubmitPage($event)"
+        [initErreurMessage]="errorMessage()">
+      </app-new-transaction-component>
+
+      @if (errorMessage()) {
+        <p class="error-text">
+          {{errorMessage() }}
+        </p>
+      }
+    </section>
+  </main>
+</div>

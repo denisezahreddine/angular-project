@@ -5,7 +5,6 @@ import { catchError, throwError } from 'rxjs';
 import {LoginStore} from '../compte/store/login.store';
 
 
-
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   const store = inject(LoginStore);

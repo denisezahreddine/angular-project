@@ -28,4 +28,21 @@ export class CompteStore {
   selectCompte(id: string) {
     this.selectedId.set(id);
   }
+
+  // 1) Récupérer un compte par id (utile dans le use case)
+  getCompteById(id: string): Compte | undefined {
+    return this._comptes().find(c => c.id === id);
+  }
+  // 2) Débiter un compte (mettre à jour le solde après transaction)
+  debiterCompte(id: string, amount: number): void {
+    const updated = this._comptes().map(c => {
+      if (c.id !== id) return c;
+      return {
+        ...c,
+        balance: c.balance - amount,
+      };
+    });
+    this._comptes.set(updated);
+  }
+
 }

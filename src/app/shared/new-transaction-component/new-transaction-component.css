@@ -1,0 +1,53 @@
+.nt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.nt-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nt-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.nt-input {
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+  font-size: 14px;
+  background: #f9fafb;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.nt-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.18);
+}
+
+.nt-textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.nt-footer {
+  margin-top: 8px;
+}
+
+.nt-send {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: none;
+  background: #bfdbfe;
+  color: #1f2937;
+  font-weight: 600;
+  cursor: pointer;
+}
