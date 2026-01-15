@@ -1,8 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, take } from 'rxjs/operators';
 import { CompteStore } from '../store/compte.store';
 import { TransactionsApi } from '../api/transactions.api';
+import { TransactionsStore } from '../store/transactions.store';
+import { Transaction } from '../models/transaction.model';
 
 export type CreateTransactionInput = {
   fromAccountId: string;   // vient de la page
@@ -20,63 +22,42 @@ export type ResultatCreationTransaction = {
 export class CreateTransactionUsecase {
   private store = inject(CompteStore);
   private transactionsApi = inject(TransactionsApi);
+  private transactionsStore = inject(TransactionsStore);
 
   execute(input: CreateTransactionInput) {
-    input.amount = Number(input.amount);
-    if (isNaN(input.amount)) {
-      return of<ResultatCreationTransaction>({
-        ok: false,
-        errorMessage: 'Montant invalide',
-      });
-    }
-    // 1) Règle métier : montant > 0
-    if (input.amount <= 0) {
-      return of<ResultatCreationTransaction>({
-        ok: false,
-        errorMessage: 'Le montant doit être positif',
-      });
-    }
+    // 1) petites validations métier côté front
+    const amount = Number(input.amount);
+    const toAccountId = input.toAccountId?.trim() ?? '';
+    const description = input.description?.trim() ?? '';
 
-    // 2) Récupérer le compte émetteur
+    if (!toAccountId) return of({ ok: false, errorMessage: 'Compte destinataire manquant' });
+    if (input.fromAccountId === toAccountId) return of({ ok: false, errorMessage: 'Impossible d’envoyer sur le même compte' });
+    if (isNaN(amount)) return of({ ok: false, errorMessage: 'Montant invalide' });
+    if (amount <= 0) return of({ ok: false, errorMessage: 'Le montant doit être positif' });
+
     const compte = this.store.getCompteById(input.fromAccountId);
-    if (!compte) {
-      return of<ResultatCreationTransaction>({
-        ok: false,
-        errorMessage: 'Compte émetteur introuvable',
-      });
-    }
+    if (!compte) return of({ ok: false, errorMessage: 'Compte émetteur introuvable' });
+    if (amount > compte.balance) return of({ ok: false, errorMessage: 'Le montant doit être inférieur ou égal au solde' });
 
-    // 3) Règle métier : montant ≤ solde
-    if (input.amount > compte.balance) {
-      return of<ResultatCreationTransaction>({
+    // 2) appel API puis mise à jour des stores si succès
+    return this.transactionsApi.emitTransaction({
+      emitterAccountId: input.fromAccountId,
+      receiverAccountId: toAccountId,
+      amount,
+      description,
+    }).pipe(
+      take(1),
+      tap((transaction: Transaction) => {
+        // mettre à jour le front localement pour un retour rapide
+        this.store.debiterCompte(input.fromAccountId, amount);
+        this.store.crediterCompte(toAccountId, amount);
+        this.transactionsStore.upsertTransaction(transaction);
+      }),
+      map(() => ({ ok: true } as ResultatCreationTransaction)),
+      catchError((err) => of({
         ok: false,
-        errorMessage: 'Le montant doit être inférieur ou égal au solde',
-      });
-    }
-
-    // 4) Appel HTTP réel vers le backend Swagger
-    return this.transactionsApi
-      .emitTransaction({
-        emitterAccountId: input.fromAccountId,
-        receiverAccountId: input.toAccountId,
-        amount: input.amount,
-        description: input.description,
-      })
-      .pipe(
-        tap(() => {
-          // 5) Si succès, on met à jour le solde en local
-          this.store.debiterCompte(input.fromAccountId, input.amount);
-        }),
-        map(() => ({
-          ok: true,
-        } as ResultatCreationTransaction)),
-        catchError((err) => {
-          console.error('Erreur création transaction', err);
-          return of<ResultatCreationTransaction>({
-            ok: false,
-            errorMessage: 'Erreur lors de la création de la transaction',
-          });
-        }),
-      );
+        errorMessage: err?.error?.message || err?.message || 'Erreur lors de la création de la transaction',
+      })),
+    );
   }
 }

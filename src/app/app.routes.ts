@@ -7,7 +7,6 @@ import {ProfileComponent} from './pages/profile/profile.component';
 import {TransactionPageComponent} from './pages/transaction/transaction';
 import { OpenAccountComponent } from './pages/open-account.component/open-account.component';
 import {RegisterComponent} from './pages/registration/register.component';
-import {CompteDetailComponent} from './pages/compte/compteDetail.component';
 
 
 export const routes: Routes = [
@@ -38,11 +37,6 @@ export const routes: Routes = [
       {
         path: 'transaction/:accountId',
         component: TransactionPageComponent,
-        canActivate: [authGuard]
-      },
-      {
-        path: 'accounts/:accountId',
-        component: CompteDetailComponent,
         canActivate: [authGuard]
       }
 
