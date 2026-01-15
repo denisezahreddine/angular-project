@@ -7,6 +7,7 @@ import {ProfileComponent} from './pages/profile/profile.component';
 import {TransactionPageComponent} from './pages/transaction/transaction';
 import { OpenAccountComponent } from './pages/open-account.component/open-account.component';
 import {RegisterComponent} from './pages/registration/register.component';
+import { ViewTransactionComponent } from './pages/view-transaction/view-transaction';
 
 export const routes: Routes = [
   {
@@ -19,14 +20,9 @@ export const routes: Routes = [
         canActivate: [authGuard]
       },
       {
-        path: 'open', // L'URL sera donc /open
+        path: 'open',
         component: OpenAccountComponent,
-        canActivate: [authGuard] // On protège aussi cette page
-      },
-      {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
+        canActivate: [authGuard]
       },
       {
         path: 'profile',
@@ -37,8 +33,19 @@ export const routes: Routes = [
         path: 'transaction/:accountId',
         component: TransactionPageComponent,
         canActivate: [authGuard]
-      }
-
+      },
+      // --- ROUTE MODIFIÉE POUR ÊTRE DYNAMIQUE ---
+      {
+        path: 'view-transactions/:accountId', // Ajout du paramètre :accountId
+        component: ViewTransactionComponent,
+        canActivate: [authGuard]
+      },
+      // ------------------------------------------
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
     ]
   },
   {
@@ -49,10 +56,8 @@ export const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
-  // TOUJOURS EN DERNIER
   {
-    path: '**', // Redirige les erreurs 404 vers login
+    path: '**',
     redirectTo: 'login'
   },
-
 ];

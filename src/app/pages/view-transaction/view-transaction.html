@@ -1,0 +1,44 @@
+<div class="page-container">
+  <header class="header">
+    <button class="back-button" (click)="onBack()">←</button>
+    <h1>Transactions</h1>
+  </header>
+
+  <div class="transaction-list">
+    @for (t of visibleTransactions(); track t.id) {
+    <div class="transaction-card">
+      <div class="left-section">
+        <div class="icon-circle">
+          <span class="arrow">↑</span>
+        </div>
+        <div class="info-block">
+          <span class="transaction-label">Transaction</span>
+        </div>
+
+      </div>
+
+      <div class="date">{{ t.emittedAt | date: 'dd/MM/yyyy' }}</div>
+
+
+      <div class="right-section">
+        <span class="amount"
+              [class.positive]="t.emitter.id !== accountId()"
+              [class.negative]="t.emitter.id === accountId()">
+          {{ t.emitter.id === accountId() ? "-" : "+" }}
+          {{ t.amount | number: '1.2-2' }} €
+        </span>
+      </div>
+    </div>
+    } @empty {
+    <p class="empty-msg">Aucune transaction à afficher.</p>
+    }
+
+    @if (store.transactions().length > limit()) {
+    <div class="actions-container">
+      <button class="show-more-btn" (click)='showMore()'>
+        Afficher plus
+      </button>
+    </div>
+    }
+  </div>
+</div>

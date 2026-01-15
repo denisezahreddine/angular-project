@@ -1,1 +1,5 @@
-<p>lien-component works!</p>
+<a [attr.href]="href() || 'javascript:void(0)'"
+   (click)="handleClick($event)"
+   class="custom-link">
+  {{ label() }}
+</a>
