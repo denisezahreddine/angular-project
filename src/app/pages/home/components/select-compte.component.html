@@ -65,6 +65,7 @@
           </svg>
         </div>
         <div class="account-info">
+         <div class="accound-id">IBAN:{{c.id}}</div>
           <div class="account-label">{{ c.label }}</div>
           <div class="account-balance" [class.negative]="c.balance < 0">
             {{ c.balance }} €
