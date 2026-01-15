@@ -11,24 +11,8 @@
   <app-button
     (btnClick)="onSend()"
     [disabled]="isNoAccountSelected()">
-  Send
+    Send
   </app-button>
-<div style="display: flex; gap: 10px; margin-top: 16px;">
-  <app-button (btnClick)="onInfo()">Infos</app-button>
-  <app-button (btnClick)="onSend()">Send</app-button>
   <app-button (btnClick)="onOpen()">Open</app-button>
 </div>
 
-<section style="margin-top: 24px;">
-  <app-transactions-list
-    [transactions]="transactions()"
-    [currentAccountId]="selectedAccountId()"
-    [limit]="recentLimit"
-    (selectTransaction)="onTransactionSelected($event)"
-  />
-  @if (selectedAccountId()) {
-    <div style="margin-top: 12px;">
-      <app-button (btnClick)="onViewAll()">View all transactions</app-button>
-    </div>
-  }
-</section>
