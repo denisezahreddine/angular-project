@@ -21,7 +21,7 @@ export class RegisterUsecase {
         next: (res) => {
           // L'API a déjà fait le localStorage.setItem dans son 'tap'
           // Maintenant on prévient le STORE que c'est un succès
-          this.store.setLoginSuccess();
+          this.store.setLoginSuccess(res.user.name,res.user.clientCode);
           this.eventBus.emit(new RegistrationSuccessEvent(res.user.clientCode));;
         },
         error: (err) => {

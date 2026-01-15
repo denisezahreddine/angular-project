@@ -14,7 +14,7 @@ import {AuthStore} from '../../compte/store/auth.store';
 export class LoginComponent {
   private store = inject(AuthStore);
   private loginUseCase = inject(LoginUseCase);
-  protected vm = inject(LoginViewModel);
+
   // Accès direct au signal du store
   error = this.store.error;
 

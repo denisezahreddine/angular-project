@@ -1,5 +1,5 @@
 import {Component, computed, inject} from '@angular/core';
-import {LoginStore} from '../../../../compte/store/login.store';
+import {AuthStore} from '../../../../compte/store/auth.store';
 import {RouterLink} from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import {RouterLink} from '@angular/router';
 })
 export class AvatarComponent {
 
-  private store = inject(LoginStore);
+  private store = inject(AuthStore);
 
 
 // Génère les initiales (ex: "Olfa Laarif" -> "OL")

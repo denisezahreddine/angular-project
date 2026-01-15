@@ -6,8 +6,8 @@
       <label>Client code </label>
       <input type="text"
              maxlength="8"
-             [value]="vm.codeClient()"
-             (input)="vm.codeClient.set($any($event.target).value)"
+             [value]="codeClient()"
+             (input)="codeClient.set($any($event.target).value)"
              placeholder="12345678">
     </div>
 
@@ -17,32 +17,32 @@
 
         <div class="dots-container">
           @for (i of [0,1,2,3,4,5]; track i) {
-            <div class="dot" [class.active]="vm.password().length > i"></div>
+            <div class="dot" [class.active]="password().length > i"></div>
           }
         </div>
-        <button type="button" class="btn-clear-red" (click)="vm.deleteLast()">
+        <button type="button" class="btn-clear-red" (click)="deleteLast()">
           &times;
         </button>
       </div>
     </div>
 
     <div class="numpad">
-      @for (n of vm.numbers; track n) {
-        <button type="button" (click)="vm.addNumber(n)">
+      @for (n of numbers; track n) {
+        <button type="button" (click)="addNumber(n)">
           {{ n }}
         </button>
       }
 
     </div>
 
-    @if (vm.error()) {
+    @if (error()) {
       <p class="error-text">
-        {{vm.error() }}
+        {{error() }}
       </p>
     }
     <button class="login-button"
-            [disabled]="!vm.isFormValid()"
-            (click)="vm.onLogin()">
+            [disabled]="!isFormValid()"
+            (click)="onLogin()">
       Login
     </button>
 
