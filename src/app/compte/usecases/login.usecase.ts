@@ -18,6 +18,7 @@ export class LoginUseCase {
       .pipe(
         take(1)).subscribe({
         next: (response) => {
+          localStorage.setItem('access_token', response.jwt);
           // L'API a déjà fait le localStorage.setItem dans son 'tap'
           // Maintenant on prévient le STORE que c'est un succès
           this.store.setLoginSuccess(response.user.name,response.user.clientCode);
