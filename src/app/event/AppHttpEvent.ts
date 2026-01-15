@@ -1,5 +1,5 @@
 
-export class RegistrationEvent {
+export class AppHttpEvent {
   static readonly loading = 'LOADING';
   static readonly success = 'SUCCESS';
   static readonly error = 'ERROR';

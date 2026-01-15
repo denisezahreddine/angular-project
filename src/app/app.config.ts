@@ -6,6 +6,8 @@ import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import {authInterceptor} from './core/auth.interceptor';
 import {AuthGatewayImpl} from './registration/gateway/auth-gateway-impl';
 import {AuthGateway} from './registration/gateway/auth-gateway';
+import {TransactionGateway} from './transaction/gateways/transaction-gateway';
+import {TransactionGatewayImpl} from './transaction/gateways/transaction-gateway-impl';
 
 
 export const appConfig: ApplicationConfig = {
@@ -16,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([authInterceptor])
     ),
-    {provide: AuthGateway, useClass: AuthGatewayImpl}
+    {provide: AuthGateway, useClass: AuthGatewayImpl},
+    {provide: TransactionGateway, useClass: TransactionGatewayImpl},
   ]
 };

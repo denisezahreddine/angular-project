@@ -8,6 +8,7 @@ import {TransactionPageComponent} from './pages/transaction/transaction';
 import { OpenAccountComponent } from './pages/open-account.component/open-account.component';
 import {RegisterComponent} from './pages/registration/register.component';
 import {CompteDetailComponent} from './pages/compte/compteDetail.component';
+import {TransactionViewComponent} from './pages/parent-test';
 
 
 export const routes: Routes = [
@@ -47,6 +48,10 @@ export const routes: Routes = [
       }
 
     ]
+  },
+  {
+    path: 'test',
+    component: TransactionViewComponent
   },
   {
     path: 'login',

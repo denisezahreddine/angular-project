@@ -57,5 +57,12 @@ export class TransactionsApi {
     );
   }
 
+  cancelTransaction(transactionId: string) {
+    return this.http.post<TransactionResponse[]>(
+      `${this.baseUrl}/transactions/${transactionId}/cancel`,
+      { headers: this.authHeaders },
+    );
+  }
+
 }
 
