@@ -9,6 +9,8 @@ import { OpenAccountComponent } from './pages/open-account.component/open-accoun
 import {RegisterComponent} from './pages/registration/register.component';
 import {CompteDetailComponent} from './pages/compte/compteDetail.component';
 
+import { ViewTransactionComponent } from './pages/view-transaction/view-transaction';
+
 export const routes: Routes = [
   {
     path: '',
@@ -38,13 +40,24 @@ export const routes: Routes = [
         path: 'transaction/:accountId',
         component: TransactionPageComponent,
         canActivate: [authGuard]
-
       },
       {
         path: 'accounts/:accountId',
         component: CompteDetailComponent,
         canActivate: [authGuard]
-     }
+       },
+      // --- ROUTE MODIFIÉE POUR ÊTRE DYNAMIQUE ---
+      {
+        path: 'view-transactions/:accountId', // Ajout du paramètre :accountId
+        component: ViewTransactionComponent,
+        canActivate: [authGuard]
+      },
+      // ------------------------------------------
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
     ]
   },
   {
