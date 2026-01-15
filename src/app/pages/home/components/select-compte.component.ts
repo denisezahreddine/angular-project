@@ -1,4 +1,4 @@
-import {Component, inject, signal, computed} from '@angular/core';
+import {Component, inject, signal, computed, EventEmitter, Output} from '@angular/core';
 import {CompteStore} from '../../../compte/store/compte.store';
 
 @Component({
@@ -12,6 +12,8 @@ export class SelectCompteComponent {
 
   comptes = this.store.comptes;
   selectedId = signal<string | null>(null);
+//pour remonter l’accountId vers HomeComponent.
+  @Output() selectCompte = new EventEmitter<string>();
 
   selectedCompte = computed(() =>
     this.comptes().find(c => c.id === this.selectedId())
@@ -19,6 +21,8 @@ export class SelectCompteComponent {
 
   onSelectionChange(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
-    this.selectedId.set(selectElement.value);
+    const id= selectElement.value;
+    this.selectedId.set(id);
+    this.selectCompte.emit(id);
   }
 }

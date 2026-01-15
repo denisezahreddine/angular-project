@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import {authGuard} from './core/auth.guard';
 import {LayoutComponent} from './shared/layout/layout';
 import {ProfileComponent} from './pages/profile/profile.component';
+import {TransactionPageComponent} from './pages/transaction/transaction';
 
 export const routes: Routes = [
 
@@ -26,6 +27,11 @@ export const routes: Routes = [
         component: ProfileComponent,
         canActivate: [authGuard]
       },
+      {
+        path: 'transaction/:accountId',
+        component: TransactionPageComponent,
+        canActivate: [authGuard]
+      }
 
     ]
   },
@@ -33,8 +39,9 @@ export const routes: Routes = [
         path: 'login',
         component: LoginComponent
       },
-      {
-        path: '**', // Redirige les erreurs 404 vers login
-        redirectTo: 'login'
-      },
+    //  {
+      //  path: '**', // Redirige les erreurs 404 vers login
+        //redirectTo: 'login'
+    //  },
+
 ];

@@ -1,8 +1,4 @@
 <div class="tx-shell">
-  <header class="tx-header">
-    <div class="tx-logo">CodingBank</div>
-    <div class="tx-avatar">K</div>
-  </header>
 
   <main class="tx-main">
     <section class="tx-card">
@@ -21,9 +17,11 @@
         [initErreurMessage]="errorMessage()">
       </app-new-transaction-component>
 
-      <p *ngIf="errorMessage()" class="tx-error">
-        {{ errorMessage() }}
-      </p>
+      @if (errorMessage()) {
+        <p class="error-text">
+          {{errorMessage() }}
+        </p>
+      }
     </section>
   </main>
 </div>

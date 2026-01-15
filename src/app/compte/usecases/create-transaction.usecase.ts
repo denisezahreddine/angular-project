@@ -18,6 +18,10 @@ export class CreateTransactionUsecase {
   private store = inject(CompteStore);
 
   execute(input: CreateTransactionInput): ResultatCreationTransaction {
+    input.amount = Number(input.amount);
+    if (isNaN(input.amount)) {
+      return { ok: false, errorMessage: 'Montant invalide' };
+    }
     // 1) Règle métier : montant > 0
     if (input.amount <= 0) {
       return { ok: false, errorMessage: 'Le montant doit être positif' };
@@ -36,6 +40,7 @@ export class CreateTransactionUsecase {
         errorMessage: 'Le montant doit être inférieur ou égal au solde',
       };
     }
+
 
     // 4) Mettre à jour le solde en local
     this.store.debiterCompte(input.fromAccountId, input.amount);

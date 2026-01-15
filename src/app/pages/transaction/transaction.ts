@@ -7,7 +7,7 @@ import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-transaction-page',
   standalone: true,
-  imports: [NewTransactionComponent, CardComponent],
+  imports: [NewTransactionComponent],
   templateUrl: './transaction.html',
   styleUrls: ['./transaction.css'],
 })
