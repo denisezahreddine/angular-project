@@ -1,6 +1,6 @@
 import {computed, Injectable, signal} from '@angular/core';
 import { Compte } from '../models/compte.model';
-//store local ( état global des comptes )
+
 @Injectable({ providedIn: 'root' })
 export class CompteStore {
   // Un signal privé pour l'état, et un signal public en lecture seule
