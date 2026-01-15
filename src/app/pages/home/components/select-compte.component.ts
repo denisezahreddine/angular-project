@@ -11,6 +11,8 @@ export class SelectCompteComponent {
   private store = inject(CompteStore);
 
   comptes = this.store.comptes;
+
+
   selectedId = signal<string | null>(null);
 //pour remonter l’accountId vers HomeComponent.
   @Output() selectCompte = new EventEmitter<string>();
@@ -23,6 +25,7 @@ export class SelectCompteComponent {
     const selectElement = event.target as HTMLSelectElement;
     const id= selectElement.value;
     this.selectedId.set(id);
+    this.store.selectCompte(id);
     this.selectCompte.emit(id);
   }
 }

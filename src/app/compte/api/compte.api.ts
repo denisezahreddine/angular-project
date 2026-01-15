@@ -12,12 +12,13 @@ export class CompteApi {
 
 
   getComptes() {
-    return this.http.get<Compte[]>(`${this.baseUrl}/accounts`, {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-
-      }
-    });
+    return this.http.get<Compte[]>(`${this.baseUrl}/accounts`);
   }
+
+  // Récupère un compte spécifique par son ID
+  getAccountById(accountId: string) {
+    return this.http.get<Compte>(`${this.baseUrl}/accounts/${accountId}`);
+  }
+
 
 }

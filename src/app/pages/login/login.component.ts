@@ -48,7 +48,7 @@ export class LoginComponent {
 
   onLogin() {
     if (this.isFormValid()) {
-      // Le UseCase s'occupera de l'appel API ET de la navigation vers /home
+
       this.loginViewModel.login(this.codeClient(), this.password());
     }
   }

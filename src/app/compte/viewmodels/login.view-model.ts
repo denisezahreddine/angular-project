@@ -1,6 +1,5 @@
 import { inject, Injectable, signal, computed } from '@angular/core';
 import {LoginUseCase} from '../usecases/login.usecase';
-import {AuthStore} from '../store/auth.store';
 
 
 @Injectable({ providedIn: 'root' })

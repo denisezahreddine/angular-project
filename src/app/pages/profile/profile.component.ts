@@ -1,25 +1,33 @@
 import { Component, inject, OnInit } from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
-import {AuthStore} from '../../compte/store/auth.store';
-import {ProfileUseCase} from '../../compte/usecases/profile.usecase';
 import {BackButtonComponent} from '../../shared/back-button-component/back-button-component';
 import {ProfileViewModel} from '../../compte/viewmodels/profile.view-model';
+import {AuthStore} from '../../compte/store/auth.store';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  providers: [ProfileViewModel],
   templateUrl: './profile.component.html',
   imports: [BackButtonComponent],
   styleUrl: './profile.component.css'
 })
 
 export class ProfileComponent implements OnInit {
+  private store = inject(AuthStore);
+  private profileViewModel = inject(ProfileViewModel);
+  private router = inject(Router);
 
-  protected vm = inject(ProfileViewModel);
+  username = this.store.userName;
+  clientCode = this.store.clientCode;
+
 
   ngOnInit() {
-    this.vm.init();
+    this.profileViewModel.loadProfile();
+  }
+
+  onLogout(): void {
+    this.store.setLogout();
+    this.router.navigate(['/login']);
   }
 
 }

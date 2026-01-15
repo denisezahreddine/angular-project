@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, computed, inject, OnInit} from '@angular/core';
 import { LoadComptesUseCase } from '../../compte/usecases/load-comptes.usecase';
 import { CompteStore } from '../../compte/store/compte.store';
 import { SelectCompteComponent } from './components/select-compte.component';
@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit{
   selectedAccountId: string | null = null;
   selectedCompte = this.store.selectedCompte;
 
+  isNoAccountSelected = computed(() => !this.store.selectedId());
+
   ngOnInit() {
     if (this.comptes().length === 0) {
       this.loadComptes.execute();
@@ -28,7 +30,11 @@ export class HomeComponent implements OnInit{
   }
 //les méthodes que vous appelez dans votre HTML
   onInfo() {
-    console.log('Bouton Info cliqué !');
+    const id = this.store.selectedId();
+    if (id) {
+      this.router.navigate(['/accounts', id]);
+    }
+
   }
 
  //id de compte selectionné
