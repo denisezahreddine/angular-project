@@ -5,6 +5,7 @@ import {CurrencyPipe, DatePipe} from '@angular/common';
 import {BackButtonComponent} from '../../shared/back-button-component/back-button-component';
 import {LoadCompteDetailUseCase} from '../../compte/usecases/load-compte-detail.usecase';
 import {CompteDetailViewModel} from '../../compte/viewmodels/compteDetail.view-model';
+import {CopyButtonComponent} from '../../shared/copy-button-component/copy-button-component';
 
 
 @Component({
@@ -14,7 +15,8 @@ import {CompteDetailViewModel} from '../../compte/viewmodels/compteDetail.view-m
   imports: [
     CurrencyPipe,
     DatePipe,
-    BackButtonComponent
+    BackButtonComponent,
+    CopyButtonComponent
   ],
   styleUrl: './compteDetail.component.css'
 })

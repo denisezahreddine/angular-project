@@ -2,17 +2,22 @@
   <app-back-button destination="/home"></app-back-button>
 
   @if (compte(); as compte) {
-    <div class="detail-card">
-      <div class="account-header">
-        <h2>{{ compte.label }}</h2>
+  <div class="detail-card">
+    <div class="account-header">
+      <h2>{{ compte.label }}</h2>
         <p class="balance">{{ compte.balance | currency:'EUR' }}</p>
       </div>
 
       <div class="info-list">
         <div class="info-item">
           <span class="label">Id</span>
+            <div div style="display: flex; align-items: center; gap: 8px;" class="iban-label">
+
           <span class="value">{{ compte.id }}</span>
+          <app-copy-button-component [valueToCopy]="compte.id"></app-copy-button-component>
+          </div>
         </div>
+
 
         <div class="info-item">
           <span class="label">Opened at</span>
@@ -21,8 +26,8 @@
       </div>
     </div>
   } @else {
-    <div class="error-state">
-      <p>Aucun compte sélectionné.</p>
-    </div>
+  <div class="error-state">
+    <p>Aucun compte sélectionné.</p>
+  </div>
   }
 </div>
