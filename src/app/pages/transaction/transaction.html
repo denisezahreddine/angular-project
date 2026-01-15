@@ -5,7 +5,7 @@
       <button
         class="tx-back"
         type="button"
-        (click)="router.navigate(['/home'])">
+        (click)="goHome()">
         ←
       </button>
 
@@ -14,12 +14,12 @@
 
       <app-new-transaction-component
         (submitTransactionForm)="onFormSubmitPage($event)"
-        [initErreurMessage]="errorMessage()">
+        [initErreurMessage]="vm.error() || ''">
       </app-new-transaction-component>
 
-      @if (errorMessage()) {
+      @if (vm.error()) {
         <p class="error-text">
-          {{errorMessage() }}
+          {{ vm.error() }}
         </p>
       }
     </section>

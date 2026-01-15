@@ -27,7 +27,6 @@ export class CompteStore {
     this._comptes.set([]);
   }
 
-
   // Méthode pour changer la sélection
   selectCompte(id: string) {
     this.selectedId.set(id);
@@ -49,7 +48,20 @@ export class CompteStore {
     this._comptes.set(updated);
   }
 
+  // 3) Créditer un compte (quand on reçoit de l’argent)
   setCompteDetail(compte: Compte) {
     this._compte.set(compte);
   }
+  // 3) Créditer un compte (utile quand on reçoit une transaction)
+  crediterCompte(id: string, amount: number): void {
+    const updated = this._comptes().map(c => {
+      if (c.id !== id) return c;
+      return {
+        ...c,
+        balance: c.balance + amount,
+      };
+    });
+    this._comptes.set(updated);
+  }
+
 }

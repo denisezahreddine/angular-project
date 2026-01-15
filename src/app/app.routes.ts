@@ -27,6 +27,11 @@ export const routes: Routes = [
         canActivate: [authGuard] // On protège aussi cette page
       },
       {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
         path: 'profile',
         component: ProfileComponent,
         canActivate: [authGuard]
