@@ -37,7 +37,7 @@ export class LoginViewModel {
   }
 
   // --- Action principale ---
-  onlogin() {
+  onLogin() {
     if (this.isFormValid()) {
       this.loginUseCase.execute(this.codeClient(), this.password());
     }
