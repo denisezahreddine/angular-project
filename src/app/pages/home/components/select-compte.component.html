@@ -12,7 +12,7 @@
       <div class="balance-container">
         <span class="balance-label">Solde disponible</span>
         <div class="balance-amount" [class.negative]="compte.balance < 0">
-          {{ compte.balance }} €
+      {{ compte.balance }} €
         </div>
       </div>
       } @else {
@@ -42,7 +42,7 @@
 
       @for (c of comptes(); track c.id) {
       <option [value]="c.id">
-        {{ c.label }} — {{ c.balance }} €
+      {{ c.label }} — {{ c.balance }} €
       </option>
       }
     </select>
@@ -65,10 +65,15 @@
           </svg>
         </div>
         <div class="account-info">
-         <div class="accound-id">IBAN:{{c.id}}</div>
-          <div class="account-label">{{ c.label }}</div>
+
+          <div div style="display: flex; align-items: center; gap: 8px;" class="iban-label">
+          IBAN: {{ c.id }}<app-copy-button-component [valueToCopy]="c.id"></app-copy-button-component>
+     </div>
+
+
+         <div class="account-label">{{ c.label }}</div>
           <div class="account-balance" [class.negative]="c.balance < 0">
-            {{ c.balance }} €
+      {{ c.balance }} €
           </div>
         </div>
       </div>

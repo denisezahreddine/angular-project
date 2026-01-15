@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {Component, computed, inject, OnInit, signal} from '@angular/core';
 import { LoadComptesUseCase } from '../../compte/usecases/load-comptes.usecase';
 import { CompteStore } from '../../compte/store/compte.store';
 import { SelectCompteComponent } from './components/select-compte.component';
@@ -13,9 +13,6 @@ import { LienComponent } from "../../shared/lien-component/lien-component";
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit{
-maFonctionDeLogique() {
-throw new Error('Method not implemented.');
-}
   private loadComptes = inject(LoadComptesUseCase);
   private store = inject(CompteStore);
 
@@ -39,6 +36,8 @@ throw new Error('Method not implemented.');
          alert("Veuillez sélectionner un compte d'abord !");
        }
      }
+  isNoAccountSelected = computed(() => !this.store.selectedId());
+
   ngOnInit() {
     if (this.comptes().length === 0) {
       this.loadComptes.execute();
@@ -46,7 +45,11 @@ throw new Error('Method not implemented.');
   }
 //les méthodes que vous appelez dans votre HTML
   onInfo() {
-    console.log('Bouton Info cliqué !');
+    const id = this.store.selectedId();
+    if (id) {
+      this.router.navigate(['/accounts', id]);
+    }
+
   }
 
  //id de compte selectionné

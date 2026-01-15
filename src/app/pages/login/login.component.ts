@@ -3,7 +3,7 @@ import { Component, signal, computed, inject } from '@angular/core';
 import { RouterLink} from '@angular/router';
 import {LoginUseCase} from '../../compte/usecases/login.usecase';
 import {AuthStore} from '../../compte/store/auth.store';
-import {ButtonComponent} from '../../shared/button-component/button-component';
+import {LoginViewModel} from '../../compte/viewmodels/login.view-model';
 import {PasswordComponent} from '../registration/components/password-component/password-component';
 
 @Component({
@@ -15,7 +15,8 @@ import {PasswordComponent} from '../registration/components/password-component/p
 })
 export class LoginComponent {
   private store = inject(AuthStore);
-  private loginUseCase = inject(LoginUseCase);
+  private loginViewModel = inject(LoginViewModel);
+
 
   // Accès direct au signal du store
   error = this.store.error;
@@ -38,8 +39,8 @@ export class LoginComponent {
 
   onLogin() {
     if (this.isFormValid()) {
-      // Le UseCase s'occupera de l'appel API ET de la navigation vers /home
-      this.loginUseCase.execute(this.codeClient(), this.password());
+
+      this.loginViewModel.login(this.codeClient(), this.password());
     }
   }
 }

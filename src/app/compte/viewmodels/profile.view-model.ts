@@ -4,23 +4,14 @@ import {AuthStore} from '../store/auth.store';
 import {ProfileUseCase} from '../usecases/profile.usecase';
 
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ProfileViewModel {
-  private store = inject(AuthStore);
+
   private profileUseCase = inject(ProfileUseCase);
-  private router = inject(Router);
 
-  // --- Données exposées au composant (Signals) ---
-  readonly username = this.store.userName;
-  readonly clientCode = this.store.clientCode;
-
-  init() {
+  loadProfile() {
     this.profileUseCase.execute();
   }
 
-  // --- Actions ---
-  onLogout(): void {
-    this.store.setLogout();
-    this.router.navigate(['/login']);
-  }
+
 }
