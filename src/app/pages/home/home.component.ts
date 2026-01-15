@@ -1,14 +1,15 @@
-import {Component, computed, inject, OnInit} from '@angular/core';
+import {Component, computed, inject, OnInit, signal} from '@angular/core';
 import { LoadComptesUseCase } from '../../compte/usecases/load-comptes.usecase';
 import { CompteStore } from '../../compte/store/compte.store';
 import { SelectCompteComponent } from './components/select-compte.component';
 import { ButtonComponent } from '../../shared/button-component/button-component';
 import { Router } from '@angular/router';
+import { LienComponent } from "../../shared/lien-component/lien-component";
 
 @Component({
   selector: 'app-comptes',
   standalone: true,
-  imports: [SelectCompteComponent, ButtonComponent],
+  imports: [SelectCompteComponent, ButtonComponent, LienComponent],
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit{
@@ -21,6 +22,20 @@ export class HomeComponent implements OnInit{
   selectedAccountId: string | null = null;
   selectedCompte = this.store.selectedCompte;
 
+     // On crée un signal pour stocker l'ID sélectionné reçu du sélecteur
+     currentSelectedId = signal<string | null>(null);
+
+
+     // Action déclenchée par le clic sur "view transaction"
+     viewTransactions() {
+       const id = this.currentSelectedId();
+       if (id) {
+         // Cela va générer l'URL : /transactions/votre-id-ici
+         this.router.navigate(['view-transactions/', id]);
+       } else {
+         alert("Veuillez sélectionner un compte d'abord !");
+       }
+     }
   isNoAccountSelected = computed(() => !this.store.selectedId());
 
   ngOnInit() {
@@ -39,6 +54,7 @@ export class HomeComponent implements OnInit{
 
  //id de compte selectionné
   onCompteSelected(id: string) {
+    this.currentSelectedId.set(id);
     this.selectedAccountId = id;
     this.store.selectCompte(id);
   }

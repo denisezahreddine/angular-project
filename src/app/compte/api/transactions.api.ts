@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { Transaction } from '../models/transaction.model';
 
 export type EmitTransactionRequest = {
   emitterAccountId: string;
@@ -34,7 +35,7 @@ export class TransactionsApi {
 
   emitTransaction(body: EmitTransactionRequest) {
     // POST /transactions/emit
-    return this.http.post<TransactionResponse>(
+    return this.http.post<Transaction>(
       `${this.baseUrl}/transactions/emit`,
       body,
       { headers: this.authHeaders },
@@ -43,7 +44,7 @@ export class TransactionsApi {
 
   getTransactionById(transactionId: string) {
     // GET /transactions/{transactionId}
-    return this.http.get<TransactionResponse>(
+    return this.http.get<Transaction>(
       `${this.baseUrl}/transactions/${transactionId}`,
       { headers: this.authHeaders },
     );
@@ -51,15 +52,17 @@ export class TransactionsApi {
 
   getTransactionsByAccount(accountId: string) {
     // GET /accounts/{accountId}/transactions
-    return this.http.get<TransactionResponse[]>(
+    return this.http.get<Transaction[]>(
       `${this.baseUrl}/accounts/${accountId}/transactions`,
       { headers: this.authHeaders },
     );
   }
 
   cancelTransaction(transactionId: string) {
-    return this.http.post<TransactionResponse[]>(
+    // POST /transactions/{transactionId}/cancel
+    return this.http.post<Transaction>(
       `${this.baseUrl}/transactions/${transactionId}/cancel`,
+      {},
       { headers: this.authHeaders },
     );
   }
