@@ -2,8 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CreateTransactionUsecase, CreateTransactionInput } from '../../compte/usecases/create-transaction.usecase';
 import { NewTransactionComponent, NouvelleTransaction } from '../../shared/new-transaction-component/new-transaction-component';
-import { CardComponent } from '../../shared/card-component/card-component';
-import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-transaction-page',
   standalone: true,
@@ -32,14 +30,14 @@ export class TransactionPageComponent {
       description: value.description,
     };
 
-    const result = this.createTransactionUseCase.execute(input);
+    this.createTransactionUseCase.execute(input).subscribe((result) => {
+      if (!result.ok) {
+        this.errorMessage.set(result.errorMessage ?? '');
+        return;
+      }
 
-    if (!result.ok) {
-      this.errorMessage.set(result.errorMessage ?? '');
-      return;
-    }
-
-    this.errorMessage.set('');
-    this.router.navigate(['/home']);
+      this.errorMessage.set('');
+      this.router.navigate(['/home']);
+    });
   }
 }
