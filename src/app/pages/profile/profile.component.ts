@@ -2,13 +2,14 @@ import { Component, inject, OnInit } from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {LoginStore} from '../../compte/store/login.store';
 import {ProfileUseCase} from '../../compte/usecases/profile.usecase';
+import {BackButtonComponent} from '../../shared/back-button-component/back-button-component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   templateUrl: './profile.component.html',
   imports: [
-    RouterLink
+    RouterLink,BackButtonComponent
   ],
   styleUrl: './profile.component.css'
 })
