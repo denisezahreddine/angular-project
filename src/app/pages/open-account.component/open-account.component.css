@@ -1,0 +1,73 @@
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.card-container {
+  background: white;
+  width: 100%;
+  max-width: 500px;
+  padding: 24px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  padding: 0;
+  color: #0000FF;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color:#0000FF;
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box; /* Important pour que le padding n'augmente pas la largeur */
+}
+
+input:focus {
+  outline: none;
+  border-color: #0000FF;
+}
+
+/* Style spécifique pour le bouton Open bleu clair */
+.submit-button {
+  width: 100%;
+  padding: 14px;
+  background-color: #d1e3ff; /* Bleu clair selon l'image */
+  border: none;
+  border-radius: 4px;
+  color: #6a92d4;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #bbd5ff;
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
