@@ -3,13 +3,13 @@ import { Component, signal, computed, inject } from '@angular/core';
 import { RouterLink} from '@angular/router';
 import {LoginUseCase} from '../../compte/usecases/login.usecase';
 import {AuthStore} from '../../compte/store/auth.store';
-import {RegistrationViewModel} from '../../registration/viewModel/RegistrationViewModel';
 import {LoginViewModel} from '../../compte/viewmodels/login.view-model';
+import {PasswordComponent} from '../registration/components/password-component/password-component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink,PasswordComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -32,18 +32,9 @@ export class LoginComponent {
     return /^\d{8}$/.test(this.codeClient()) && this.password().length === 6;
   });
 
-  addNumber(num: number) {
-    if (this.password().length < 6) {
-      this.password.update(p => p + num.toString());
-    }
-  }
 
-  clearPassword() {
-    this.password.set('');
-  }
-
-  deleteLast() {
-    this.password.update(p => p.slice(0, -1));
+  updatePassword(newValue: string) {
+    this.password.set(newValue);
   }
 
   onLogin() {
