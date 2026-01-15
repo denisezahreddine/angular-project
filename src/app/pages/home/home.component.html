@@ -3,7 +3,15 @@
 </section>
 
 <div style="display: flex; gap: 10px;">
-  <app-button (btnClick)="onInfo()">Infos</app-button>
-  <app-button (btnClick)="onSend()">Send</app-button>
+  <app-button
+    (btnClick)="onInfo()"
+    [disabled]="isNoAccountSelected()">
+    Infos
+  </app-button>
+  <app-button
+    (btnClick)="onSend()"
+    [disabled]="isNoAccountSelected()">
+  Send
+  </app-button>
   <app-button (btnClick)="onOpen()">Open</app-button>
 </div>
