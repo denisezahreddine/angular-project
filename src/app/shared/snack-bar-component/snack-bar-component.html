@@ -1,0 +1,13 @@
+@if (store.isOpen()) {
+<div class="snackbar">
+<span class="msg">{{ store.message() }}</span>
+<div class="actions">
+@if (store.retryAction(); as retryFn) {
+<button class="retry-btn" (click)="onRetry(retryFn)">
+  RÉESSAYER
+</button>
+}
+</div>
+<button class="close-btn" style="padding:10px;margin:10px" (click)="store.hide()">✕</button>
+</div>
+}
