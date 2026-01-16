@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
 
   // Action déclenchée par le clic sur "view transaction"
   viewTransactions() {
-    const id = this.currentSelectedId();
+    const id = this.store.selectedId();
     if (id) {
       // Cela va générer l'URL : /transactions/votre-id-ici
       this.router.navigate(['view-transactions/', id]);
