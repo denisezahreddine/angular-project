@@ -1,23 +1,26 @@
-<section>
-  <app-select-compte (selectCompte)="onCompteSelected($event)" />
-</section>
-
-<div style="display: flex; gap: 10px;">
-  <app-button
-    (btnClick)="onInfo()"
-    [disabled]="isNoAccountSelected()">
-    Infos
-  </app-button>
-  <app-button
-    (btnClick)="onSend()"
-    [disabled]="isNoAccountSelected()">
-  Send
-  </app-button>
-  <app-button (btnClick)="onOpen()">Open</app-button>
+<div>
+  <section>
+    <app-select-compte (selectCompte)="onCompteSelected($event)"/>
+  </section>
+  <div class="actions-wrapper" style="display: flex; gap: 20px;justify-content: space-between;
+  align-items: center;  flex-direction: column;margin: 14px; ">
+    <div style="display: flex; gap: 20px;">
+      <app-button
+        (btnClick)="onInfo()"
+        [disabled]="isNoAccountSelected()">
+        Infos
+      </app-button>
+      <app-button
+        (btnClick)="onSend()"
+        [disabled]="isNoAccountSelected()">
+        Send
+      </app-button>
+      <app-button (btnClick)="onOpen()">Open</app-button>
+    </div>
+    <app-lien
+      label="view transaction"
+      (clicked)="viewTransactions()">
+    </app-lien>
+  </div>
 </div>
-<app-lien
-  label="view transaction"
-  (clicked)="viewTransactions()">
-</app-lien>
-
 

@@ -16,9 +16,9 @@
         </div>
       </div>
       } @else {
-      <div class="account-name">Sélectionnez un compte</div>
+      <div class="account-name">Select an account</div>
       <div class="balance-container">
-        <span class="balance-label">Solde disponible</span>
+        <span class="balance-label">Available balance</span>
         <div class="balance-amount placeholder">--,-- €</div>
       </div>
       }
@@ -31,14 +31,14 @@
 
   <!-- Section de sélection -->
   <div class="selection-section">
-    <h3 class="section-title">Sélectionner un compte</h3>
+    <h3 class="section-title">Select an account</h3>
 
     <select
       class="select"
       (change)="onSelectionChange($event)"
       [value]="selectedId() || ''"
     >
-      <option value="" disabled>Choisir un compte</option>
+      <option value="" disabled>Choose an account</option>
 
       @for (c of comptes(); track c.id) {
       <option [value]="c.id">
@@ -50,7 +50,7 @@
 
   <!-- Liste des comptes -->
   <div class="accounts-section">
-    <h3 class="section-title">Tous mes comptes</h3>
+    <h3 class="section-title">All my accounts</h3>
 
     <div class="accounts-list">
       @for (c of comptes(); track c.id) {
