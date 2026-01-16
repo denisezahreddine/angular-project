@@ -2,8 +2,8 @@ import {inject, Injectable} from '@angular/core';
 import {AuthGateway} from './auth-gateway';
 import {Observable, tap} from 'rxjs';
 import {RegistrationApi} from '../api/registration.api';
-import {LoginResponse} from '../../compte/models/loginResponse.model';
-import {LoginApi} from '../../compte/api/login.api';
+import {LoginResponse} from '../models/loginResponse.model';
+import {LoginApi} from '../api/login.api';
 
 @Injectable({providedIn: 'root'})
 export class AuthGatewayImpl implements AuthGateway {

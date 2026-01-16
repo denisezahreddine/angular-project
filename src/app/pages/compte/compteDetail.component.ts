@@ -1,10 +1,10 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CompteStore} from '../../compte/store/compte.store';
+import {CompteStore} from '../../store/compte.store';
 import {CurrencyPipe, DatePipe} from '@angular/common';
 import {BackButtonComponent} from '../../shared/back-button-component/back-button-component';
-import {LoadCompteDetailUseCase} from '../../compte/usecases/load-compte-detail.usecase';
-import {CompteDetailViewModel} from '../../compte/viewmodels/compteDetail.view-model';
+import {LoadCompteDetailUseCase} from '../../usecases/load-compte-detail.usecase';
+import {CompteDetailViewModel} from '../../viewmodels/compteDetail.view-model';
 import {CopyButtonComponent} from '../../shared/copy-button-component/copy-button-component';
 
 

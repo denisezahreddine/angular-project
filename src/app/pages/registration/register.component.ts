@@ -4,13 +4,13 @@
 
 import {Component, signal, computed, inject, effect} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
-import {AuthStore} from '../../compte/store/auth.store';
-import {RegistrationViewModel} from '../../registration/viewModel/RegistrationViewModel';
-import {EventBus} from '../../compte/event/EventBus';
+import {AuthStore} from '../../store/auth.store';
+import {RegistrationViewModel} from '../../viewmodels/RegistrationViewModel';
+import {EventBus} from '../../event/EventBus';
 import {ButtonComponent} from '../../shared/button-component/button-component';
 import {PasswordComponent} from './components/password-component/password-component';
-import {RegistrationEvent} from '../../compte/event/RegistrationEvent';
-import {ErrorData} from '../../compte/event/errorData';
+import {RegistrationEvent} from '../../event/RegistrationEvent';
+import {ErrorData} from '../../event/errorData';
 
 @Component({
   selector: 'app-registration',

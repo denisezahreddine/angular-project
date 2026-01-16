@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 import { Transaction } from '../models/transaction.model';
 
 export type EmitTransactionRequest = {
@@ -11,6 +11,15 @@ export type EmitTransactionRequest = {
 };
 
 //  réponse de Swagger,
+export type TransactionResponse = {
+  id: string;
+  status: string;
+  emitterAccountId: string;
+  receiverAccountId: string;
+  amount: number;
+  description: string;
+};
+
 @Injectable({ providedIn: 'root' })
 export class TransactionsApi {
 

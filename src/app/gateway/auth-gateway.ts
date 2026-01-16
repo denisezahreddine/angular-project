@@ -1,6 +1,6 @@
 // auth/domain/gateways/auth.gateway.ts
 import {Observable} from 'rxjs';
-import {LoginResponse} from '../../compte/models/loginResponse.model';
+import {LoginResponse} from '../models/loginResponse.model';
 
 
 export abstract class AuthGateway {

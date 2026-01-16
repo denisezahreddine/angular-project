@@ -1,5 +1,5 @@
 import {Injectable, inject} from '@angular/core';
-import {RegisterUsecase} from '../usecase/register-usecase.service';
+import {RegisterUsecase} from '../usecases/register-usecase.service';
 
 
 @Injectable()

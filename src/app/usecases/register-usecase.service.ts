@@ -3,10 +3,9 @@ import {Injectable, inject} from '@angular/core';
 import {AuthGateway} from '../gateway/auth-gateway';
 import {Observable, take, tap} from 'rxjs';
 import {Router} from '@angular/router';
-import {AuthStore} from '../../compte/store/auth.store';
-import {EventBus} from '../../compte/event/EventBus';
-import {RegistrationEvent} from '../../compte/event/RegistrationEvent';
-import {ErrorData} from '../../compte/event/errorData';
+import {AuthStore} from '../store/auth.store';
+import {EventBus} from '../event/EventBus';
+import {RegistrationEvent} from '../event/RegistrationEvent';
 
 
 
@@ -29,7 +28,5 @@ export class RegisterUsecase {
         this.eventBus.emit(new RegistrationEvent(RegistrationEvent.error, {message: err.message}));
       }
     }));
-
-
   }
 }

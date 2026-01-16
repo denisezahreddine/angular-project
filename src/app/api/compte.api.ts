@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {inject, Injectable} from '@angular/core';
 import {Compte} from '../models/compte.model';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../environments/environment';
 
 //Appel HTTP vers le backend des comptes
 @Injectable({ providedIn: 'root' })

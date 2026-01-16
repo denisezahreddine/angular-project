@@ -1,7 +1,7 @@
 import {inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
-import {LoginResponse} from '../../compte/models/loginResponse.model';
+import {environment} from '../../environments/environment';
+import {LoginResponse} from '../models/loginResponse.model';
 
 
 @Injectable({ providedIn: 'root' })

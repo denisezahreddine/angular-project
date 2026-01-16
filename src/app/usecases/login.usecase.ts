@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { take, tap } from 'rxjs';
 import {LoginApi} from '../api/login.api';
 import {AuthStore} from '../store/auth.store';
-import {AuthGateway} from '../../registration/gateway/auth-gateway';
+import {AuthGateway} from '../gateway/auth-gateway';
 
 @Injectable({ providedIn: 'root' })
 export class LoginUseCase {

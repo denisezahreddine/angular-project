@@ -100,3 +100,71 @@ h1 {
   color: #999;
   margin-top: 50px;
 }
+
+
+
+.detail-container {
+  margin: 20px;
+  font-family: sans-serif;
+  border-radius: 20px;
+  padding: 28px;
+  background: white; /* Fond blanc comme ton profile-container */
+}
+
+/* La carte qui contient les infos */
+.detail-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+}
+
+/* Section Nom/Label et Solde */
+.account-header {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.account-header h2 {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #333;
+  margin: 0;
+}
+
+.balance {
+  font-size: 1.5rem;
+  color: #007bff;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Liste des informations */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-item .label {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.info-item .value {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+
+

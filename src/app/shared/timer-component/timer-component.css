@@ -1,0 +1,3 @@
+.timer-box { padding: 10px; border: 1px solid #ccc; border-radius: 8px; text-align: center; }
+.digits { font-family: monospace; font-size: 1.5rem; font-weight: bold; display: block; }
+.expired { color: #d9534f; border-color: #d9534f; background-color: #f9f2f2; }
