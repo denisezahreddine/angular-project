@@ -8,9 +8,7 @@
     @for (t of visibleTransactions(); track t.id) {
     <div class="transaction-card">
      <div class="left-section">
-        <div class="icon-circle">
-          <span class="arrow">↑</span>
-        </div>
+
 
 
       </div>
@@ -55,7 +53,7 @@
       </div>
 
       </div>
-        <app-button    [disabled]="false" (btnClick)="deleteTransaction(t.id)" >
+        <app-button [disabled]="t.status !== 'pending'" (btnClick)="deleteTransaction(t.id)" >
     Delete
   </app-button>
      </div>
