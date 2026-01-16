@@ -16,7 +16,7 @@ import {ErrorData} from '../../event/errorData';
   selector: 'app-registration',
   standalone: true,
   providers: [RegistrationViewModel],
-  imports: [ButtonComponent, PasswordComponent],
+  imports: [RouterLink,ButtonComponent, PasswordComponent, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
