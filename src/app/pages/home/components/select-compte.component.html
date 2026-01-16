@@ -41,7 +41,7 @@
       <option value="" disabled>Choose an account</option>
 
       @for (c of comptes(); track c.id) {
-      <option [value]="c.id">
+      <option [value]="c.id"  [selected]="c.id === selectedId()">
       {{ c.label }} — {{ c.balance }} €
       </option>
       }

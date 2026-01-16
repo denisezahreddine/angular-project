@@ -1,4 +1,4 @@
-import {Component, inject, signal, computed, EventEmitter, Output} from '@angular/core';
+import {Component, inject, signal, computed, EventEmitter, Output, OnInit} from '@angular/core';
 import {CompteStore} from '../../../store/compte.store';
 import {CopyButtonComponent} from '../../../shared/copy-button-component/copy-button-component';
 
@@ -15,7 +15,7 @@ export class SelectCompteComponent {
   comptes = this.store.comptes;
 
 
-  selectedId = signal<string | null>(null);
+  selectedId = this.store.selectedId;
 //pour remonter l’accountId vers HomeComponent.
   @Output() selectCompte = new EventEmitter<string>();
 

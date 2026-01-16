@@ -11,7 +11,7 @@ export class CompteStore {
   readonly compte = this._compte.asReadonly();
 
   // On stocke l'ID du compte sélectionné
-  readonly selectedId = signal<string | null>(null);
+  readonly selectedId = signal<string | null>(localStorage.getItem('id_compte_selected'));
 
 
   // On calcule automatiquement le compte sélectionné
@@ -30,6 +30,7 @@ export class CompteStore {
   // Méthode pour changer la sélection
   selectCompte(id: string) {
     this.selectedId.set(id);
+    localStorage.setItem('id_compte_selected', id);
   }
 
   // 1) Récupérer un compte par id (utile dans le use case)
