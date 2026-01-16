@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal, computed} from '@angular/core'; // Ajoutez signal
+import {Component, inject, OnInit, signal, computed, OnDestroy} from '@angular/core'; // Ajoutez signal
 import {CommonModule} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 import {ViewTransactionStore} from '../../store/view-transaction.store';
@@ -22,7 +22,7 @@ import {SnackBarComponent} from '../../shared/snack-bar-component/snack-bar-comp
   templateUrl: './view-transaction.html',
   styleUrl: './view-transaction.css'
 })
-export class ViewTransactionComponent implements OnInit {
+export class ViewTransactionComponent implements OnInit,OnDestroy  {
   private readonly route = inject(ActivatedRoute);
   readonly store = inject(ViewTransactionStore);
   readonly eventBus = inject(EventBus);
@@ -83,12 +83,16 @@ export class ViewTransactionComponent implements OnInit {
         console.log("data", errorData)
 
         this.snackbar.showError(
-          errorData.message,
+          "Error dans delete",
           () => retry() // On passe la méthode elle-même
         );
 
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.eventBus.unregisterListener(CancelTransactionEvent,(event)=>{})
   }
 
   ngOnInit() {
