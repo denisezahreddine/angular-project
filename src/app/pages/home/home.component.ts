@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   private router = inject(Router);
   // Accès direct au signal du store
   comptes = this.store.comptes;
-  selectedAccountId: string | null = null;
+
   selectedCompte = this.store.selectedCompte;
 
   // On crée un signal pour stocker l'ID sélectionné reçu du sélecteur
@@ -57,16 +57,17 @@ export class HomeComponent implements OnInit {
   //id de compte selectionné
   onCompteSelected(id: string) {
     this.currentSelectedId.set(id);
-    this.selectedAccountId = id;
+
     this.store.selectCompte(id);
   }
 
   onSend() {
-    if (!this.selectedAccountId) {
+    const id = this.store.selectedId();
+    if (!id) {
       console.log('Pas de compte sélectionné');
       return;
     }
-    this.router.navigate(['/transaction', this.selectedAccountId]);
+    this.router.navigate(['/transaction', id]);
   }
 
   onOpen() {
