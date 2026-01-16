@@ -60,10 +60,10 @@
       </div>
 
       </div>
-        <app-button   (clicked)="deleteTransaction(t.id)" >
+        <app-button    [disabled]="false" (btnClick)="deleteTransaction(t.id)" >
     Delete
   </app-button>
-    </div>
+     </div>
     }@empty {
     <p class="empty-msg">Aucune transaction à afficher.</p>
     }
@@ -75,5 +75,6 @@
       </button>
     </div>
     }
+    <app-snack-bar-component></app-snack-bar-component>
   </div>
 </div>

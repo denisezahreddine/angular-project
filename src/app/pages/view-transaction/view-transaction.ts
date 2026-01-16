@@ -9,13 +9,16 @@ import {TransactionViewModel} from '../../viewmodels/TransactionViewModel';
 import {RegistrationEvent} from '../../event/RegistrationEvent';
 import {ErrorData} from '../../event/errorData';
 import {EventBus} from '../../event/EventBus';
+import {CancelTransactionEvent} from '../../event/CancelTransactionEvent';
+import {SnackbarStore} from '../../store/snackbare.store';
+import {SnackBarComponent} from '../../shared/snack-bar-component/snack-bar-component';
 
 
 @Component({
   selector: 'app-view-transaction',
   standalone: true,
   providers: [TransactionViewModel],
-  imports: [CommonModule, CopyButtonComponent, ButtonComponent],
+  imports: [CommonModule, CopyButtonComponent, ButtonComponent,SnackBarComponent],
   templateUrl: './view-transaction.html',
   styleUrl: './view-transaction.css'
 })
@@ -24,7 +27,7 @@ export class ViewTransactionComponent implements OnInit {
   readonly store = inject(ViewTransactionStore);
   readonly eventBus = inject(EventBus);
   private vm = inject(TransactionViewModel);
-
+  private snackbar = inject(SnackbarStore);
   // Création d'un signal pour stocker l'ID et l'utiliser dans le HTML
   accountId = signal<string | null>(null);
   private router = inject(Router);
@@ -46,39 +49,43 @@ export class ViewTransactionComponent implements OnInit {
   }
 
   deleteTransaction(id: string) {
+     const retryAction = () => {
+      console.log("Retry: Annulation de la transaction", id);
+      this.vm.cancelTransaction(id);
+    };
+
+    // 2. On enregistre le listener AVANT de lancer l'action
+    this.registerListenerTransaction(retryAction);
+
     this.vm.cancelTransaction(id)
   }
 
 //tofix
-  private registerListenerTransaction(retry?: () => void) {
-    this.eventBus.registerListener(RegistrationEvent, (event) => {
+  private registerListenerTransaction(retry: () => void) {
+    this.eventBus.registerListener(CancelTransactionEvent, (event) => {
 
       // 1. GESTION DU LOADING
       // On passe à true si le type est LOADING, sinon false
-     // this.vm.setLoading(event.type === RegistrationEvent.loading);
-      console.log(event.type);
+      // this.vm.setLoading(event.type === RegistrationEvent.loading);
+      console.log("eventType", event.type);
       // 2. GESTION DU SUCCÈS
       if (event.type === RegistrationEvent.success) {
-        /*  this.showError.set(false); // On cache une éventuelle erreur précédente
-          this.errorMessage.set('');*/
 
-        // Mise à jour des données utilisateur dans le store
         const data = event.payload;
-   //     this.showSuccessPopup.set(true);
+        //     this.showSuccessPopup.set(true);
         console.log(event.type);
         console.log('Inscription réussie pour :', data.clientId);
       }
 
       // 3. GESTION DE L'ERREUR
       else if (event.type === RegistrationEvent.error) {
-        const data = event.payload as ErrorData; // Typage avec ton interface
+        const errorData = event.payload as ErrorData; // Typage avec ton interface
+        console.log("data", errorData)
 
-//        this.vm.setError(data.message);
-
-        // On stocke l'action de retry pour que le bouton de la popup puisse l'appeler
-        if (retry != null) {
-          retry();
-        }
+        this.snackbar.showError(
+          errorData.message,
+          () => retry() // On passe la méthode elle-même
+        );
 
       }
     });
@@ -88,7 +95,7 @@ export class ViewTransactionComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('accountId');
 
 
-    this.registerListenerTransaction()
+
     if (id) {
       this.accountId.set(id); // On stocke l'ID dans le signal
       this.store.loadAllTransactions(id);

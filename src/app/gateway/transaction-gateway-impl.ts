@@ -14,11 +14,10 @@ export class TransactionGatewayImpl implements TransactionGateway {
 
     return this.api.cancelTransaction(transactionId).pipe(
       tap(response => {
-
+        console.log("response Transaction", response )
       })
     );
-    }
-
+  }
 
 
 }
