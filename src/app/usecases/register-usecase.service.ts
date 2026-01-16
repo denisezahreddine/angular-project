@@ -3,9 +3,9 @@ import {Injectable, inject} from '@angular/core';
 import {AuthGateway} from '../gateway/auth-gateway';
 import {Observable, take, tap} from 'rxjs';
 import {Router} from '@angular/router';
-import {AuthStore} from '../../compte/store/auth.store';
-import {EventBus} from '../../event/EventBus';
-import {RegistrationEvent} from './RegistrationEvent';
+import {AuthStore} from '../store/auth.store';
+import {EventBus} from '../event/EventBus';
+import {RegistrationEvent} from '../event/RegistrationEvent';
 
 
 

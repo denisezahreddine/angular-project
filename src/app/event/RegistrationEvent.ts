@@ -1,4 +1,4 @@
-import {AppHttpEvent} from '../../event/AppHttpEvent';
+import {AppHttpEvent} from './AppHttpEvent';
 
 export class RegistrationEvent extends AppHttpEvent{
 }

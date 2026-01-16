@@ -2,8 +2,8 @@ import {inject, Injectable} from '@angular/core';
 import {Observable, tap} from 'rxjs';
 
 import {TransactionGateway} from './transaction-gateway';
-import {TransactionResponse, TransactionsApi} from '../../compte/api/transactions.api';
-import {Transaction} from '../../compte/models/transaction.model';
+import {TransactionResponse, TransactionsApi} from '../api/transactions.api';
+import {Transaction} from '../models/transaction.model';
 
 @Injectable({providedIn: 'root'})
 export class TransactionGatewayImpl implements TransactionGateway {

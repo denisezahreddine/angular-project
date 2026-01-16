@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NewTransactionComponent, NouvelleTransaction } from '../../shared/new-transaction-component/new-transaction-component';
-import { CreateTransactionViewModel } from '../../compte/viewmodels/transaction.view-model';
+import { CreateTransactionViewModel } from '../../viewmodels/transaction.view-model';
 @Component({
   selector: 'app-transaction-page',
   standalone: true,

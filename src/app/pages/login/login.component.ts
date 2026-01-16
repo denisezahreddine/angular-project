@@ -1,9 +1,9 @@
 
 import { Component, signal, computed, inject } from '@angular/core';
 import { RouterLink} from '@angular/router';
-import {LoginUseCase} from '../../compte/usecases/login.usecase';
-import {AuthStore} from '../../compte/store/auth.store';
-import {LoginViewModel} from '../../compte/viewmodels/login.view-model';
+import {LoginUseCase} from '../../usecases/login.usecase';
+import {AuthStore} from '../../store/auth.store';
+import {LoginViewModel} from '../../viewmodels/login.view-model';
 import {PasswordComponent} from '../registration/components/password-component/password-component';
 
 @Component({

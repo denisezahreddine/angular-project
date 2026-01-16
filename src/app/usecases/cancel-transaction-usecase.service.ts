@@ -2,9 +2,9 @@
 import {Injectable, inject} from '@angular/core';
 
 import { Observable, take, tap } from 'rxjs';
-import { EventBus } from '../../event/EventBus';
+import { EventBus } from '../event/EventBus';
 import {CancelTransactionEvent} from '../event/CancelTransactionEvent';
-import {TransactionGateway} from '../gateways/transaction-gateway';
+import {TransactionGateway} from '../gateway/transaction-gateway';
 
 @Injectable({ providedIn: 'root' })
 export class CancelTransactionUsecase {

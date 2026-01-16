@@ -1,5 +1,5 @@
 import {Component, inject, signal, computed, EventEmitter, Output} from '@angular/core';
-import {CompteStore} from '../../../compte/store/compte.store';
+import {CompteStore} from '../../../store/compte.store';
 import {CopyButtonComponent} from '../../../shared/copy-button-component/copy-button-component';
 
 @Component({

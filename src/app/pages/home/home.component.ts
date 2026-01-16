@@ -1,6 +1,6 @@
 import {Component, computed, inject, OnInit, signal} from '@angular/core';
-import { LoadComptesUseCase } from '../../compte/usecases/load-comptes.usecase';
-import { CompteStore } from '../../compte/store/compte.store';
+import { LoadComptesUseCase } from '../../usecases/load-comptes.usecase';
+import { CompteStore } from '../../store/compte.store';
 import { SelectCompteComponent } from './components/select-compte.component';
 import { ButtonComponent } from '../../shared/button-component/button-component';
 import { Router } from '@angular/router';

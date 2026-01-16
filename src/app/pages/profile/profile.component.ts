@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import {BackButtonComponent} from '../../shared/back-button-component/back-button-component';
-import {ProfileViewModel} from '../../compte/viewmodels/profile.view-model';
-import {AuthStore} from '../../compte/store/auth.store';
+import {ProfileViewModel} from '../../viewmodels/profile.view-model';
+import {AuthStore} from '../../store/auth.store';
 import {Router} from '@angular/router';
 
 @Component({

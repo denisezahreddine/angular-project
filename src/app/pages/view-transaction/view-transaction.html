@@ -1,35 +1,70 @@
-<div class="page-container">
+<div class="page-details">
   <header class="header">
     <button class="back-button" (click)="onBack()">←</button>
     <h1>Transactions</h1>
   </header>
 
-  <div class="transaction-list">
+  <div>
     @for (t of visibleTransactions(); track t.id) {
     <div class="transaction-card">
-      <div class="left-section">
+     <div class="left-section">
         <div class="icon-circle">
           <span class="arrow">↑</span>
         </div>
-        <div class="info-block">
-          <span class="transaction-label">Transaction</span>
-        </div>
+
 
       </div>
+<div class="info-list" style="margin: 10px; padding: 10px;">
+     <div class="info-item">
+       <span class="label">Id</span>
+       <div div style="display: flex; align-items: center; gap: 8px;" class="iban-label">
 
-      <div class="date">{{ t.emittedAt | date: 'dd/MM/yyyy' }}</div>
+         <span class="value">{{ t.id }}</span>
+          <app-copy-button-component [valueToCopy]="t.id"></app-copy-button-component>
+        </div>
+      </div>
 
 
-      <div class="right-section">
-        <span class="amount"
-              [class.positive]="t.emitter.id !== accountId()"
-              [class.negative]="t.emitter.id === accountId()">
-          {{ t.emitter.id === accountId() ? "-" : "+" }}
-          {{ t.amount | number: '1.2-2' }} €
+      <div class="info-item">
+        <span class="label">TransactionDate</span>
+        <span class="value">{{ t.emittedAt | date: 'dd/MM/yyyy' }}</span>
+      </div>
+
+
+
+      <div class="info-item">
+        <span class="label">amount</span>
+        <span class="value">{{ t.amount }}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">emitteur</span>
+        <span class="value">{{ t.emitter.owner.name }}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">recepteur</span>
+        <span class="value">{{ t.receiver.owner.name  }}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">status</span>
+        <span class="value">{{ t.status }}</span>
+      </div>
+      <div class="info-item">
+      <span class="label"
+            [class.positive]="t.emitter.id !== accountId()"
+            [class.negative]="t.emitter.id === accountId()">Amount</span>
+        <span  [class.positive]="t.emitter.id !== accountId()"
+            [class.negative]="t.emitter.id === accountId()" class="amount">
+    {{ t.emitter.id === accountId() ? "-" : "+" }}
+    {{ t.amount | number: '1.2-2' }} €
         </span>
       </div>
+
+      </div>
+        <app-button   (clicked)="deleteTransaction(t.id)" >
+    Delete
+  </app-button>
     </div>
-    } @empty {
+    }@empty {
     <p class="empty-msg">Aucune transaction à afficher.</p>
     }
 
